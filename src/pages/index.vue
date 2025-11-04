@@ -286,7 +286,10 @@
           </n-button>
 
           <!-- Logo Centrale -->
-          <div class="absolute left-1/2 -translate-x-1/2 -top-8">
+          <div
+            class="absolute left-1/2 -translate-x-1/2 -top-8"
+            @click="openCustomerPage"
+          >
             <div
               class="w-16 h-16 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full shadow-lg flex items-center justify-center border-4 border-white"
             >
@@ -393,6 +396,10 @@ const openMenu = () => {
 
 const openGame = () => {
   router.push("./game");
+};
+
+const openCustomerPage = () => {
+  router.push("./customer");
 };
 </script>
 
