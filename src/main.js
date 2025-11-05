@@ -1,5 +1,4 @@
 import './style.css'
-<<<<<<< HEAD
 import {createApp} from 'vue'
 import App from './App.vue'
 import {createRouter, createWebHistory} from 'vue-router'
@@ -7,7 +6,7 @@ import generatedRoutes from 'virtual:generated-pages'
 
 const routes = [
   ...generatedRoutes.map(route => {
-    if (route.path === '/login') {
+    if (route.path === '/login' || route.path === '/chat') {
       route.meta = {layout: 'none'}
     }
     return route
@@ -38,19 +37,3 @@ router.beforeEach((to, from, next) => {
 })
 
 createApp(App).use(router).mount('#app')
-=======
-import { createApp } from 'vue';
-import App from './App.vue';
-import { createRouter, createWebHistory } from 'vue-router';
-import generatedRoutes from 'virtual:generated-pages';
-
-const router = createRouter({
-  history: createWebHistory(),
-  routes: [
-    ...generatedRoutes,
-    { path: '/:pathMatch(.*)*', redirect: '/' },
-  ],
-});
-
-createApp(App).use(router).mount('#app');
->>>>>>> 1eaef156c7d9cee3b127257fc7e57cf1c2186fde

@@ -3,6 +3,7 @@ import {createRouter, createWebHistory} from 'vue-router'
 import {restoreSession} from '../lib/auth'
 import IndexView from '../pages/index.vue'
 import LoginView from '../pages/login.vue'
+import ChatView from '../pages/chat.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -16,6 +17,7 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   // lasciamo passare /login sempre
   if (to.name === 'login') return next()
+  if (to.name === 'chat') return next()
 
   const ok = await restoreSession()
   if (!ok) {
