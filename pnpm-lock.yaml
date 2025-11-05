@@ -8,9 +8,12 @@ importers:
 
   .:
     dependencies:
+<<<<<<< HEAD
       '@directus/sdk':
         specifier: ^20.1.1
         version: 20.1.1
+=======
+>>>>>>> 1eaef156c7d9cee3b127257fc7e57cf1c2186fde
       lucide-vue-next:
         specifier: ^0.552.0
         version: 0.552.0(vue@3.5.22)
@@ -91,10 +94,13 @@ packages:
     peerDependencies:
       vue: ^3.0.11
 
+<<<<<<< HEAD
   '@directus/sdk@20.1.1':
     resolution: {integrity: sha512-cCWvxDRKOygVHBkKA7l1I4O4niomK8SKR/+Ul1L9NFF1K2zAf3jRqhjc7JavCECOiiAWME/s2wYatNFqFFh0gQ==}
     engines: {node: '>=22'}
 
+=======
+>>>>>>> 1eaef156c7d9cee3b127257fc7e57cf1c2186fde
   '@emnapi/core@1.6.0':
     resolution: {integrity: sha512-zq/ay+9fNIJJtJiZxdTnXS20PllcYMX3OE23ESc4HK/bdYu3cOWYVhsOhVnXALfU/uqJIxn5NBPd9z4v+SfoSg==}
 
@@ -1485,8 +1491,11 @@ snapshots:
     dependencies:
       vue: 3.5.22
 
+<<<<<<< HEAD
   '@directus/sdk@20.1.1': {}
 
+=======
+>>>>>>> 1eaef156c7d9cee3b127257fc7e57cf1c2186fde
   '@emnapi/core@1.6.0':
     dependencies:
       '@emnapi/wasi-threads': 1.1.0

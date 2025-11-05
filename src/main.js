@@ -1,4 +1,5 @@
 import './style.css'
+<<<<<<< HEAD
 import {createApp} from 'vue'
 import App from './App.vue'
 import {createRouter, createWebHistory} from 'vue-router'
@@ -37,3 +38,19 @@ router.beforeEach((to, from, next) => {
 })
 
 createApp(App).use(router).mount('#app')
+=======
+import { createApp } from 'vue';
+import App from './App.vue';
+import { createRouter, createWebHistory } from 'vue-router';
+import generatedRoutes from 'virtual:generated-pages';
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes: [
+    ...generatedRoutes,
+    { path: '/:pathMatch(.*)*', redirect: '/' },
+  ],
+});
+
+createApp(App).use(router).mount('#app');
+>>>>>>> 1eaef156c7d9cee3b127257fc7e57cf1c2186fde
