@@ -42,8 +42,8 @@
     </main>
 
     <!-- Carrello -->
-    <div class="sticky bottom-20 bg-[#27272a] border-t border-black/10 w-[30%] rounded-2xl mx-auto">
-      <div class="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
+    <div class="sticky bottom-20 bg-[#27272a] border-t border-black/10 rounded-2xl mx-auto">
+      <div class="mx-auto px-4 py-3 flex items-center justify-between gap-8">
         <div>
           <p class="text-gray-300 text-sm">
             Totale:
