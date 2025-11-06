@@ -9,6 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@dicebear/collection": "^9.2.4",
+    "@dicebear/core": "^9.2.4",
+    "@directus/sdk": "^20.1.0",
+    "@vitejs/plugin-react": "^5.1.0",
+    "avataaars": "^2.0.0",
+    "dicebear": "^9.2.4",
     "lucide-vue-next": "^0.552.0",
     "vue": "^3.5.22",
     "vue-router": "^4.6.3"

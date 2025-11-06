@@ -1,15 +1,26 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50">
+  <div class="min-h-screen bg-[#29272a]/20 flex flex-col">
     <!-- Header con avatar utente -->
-    <header class="bg-[#27272a] backdrop-blur-sm shadow-sm sticky top-0 z-50">
+    <header class="bg-[#000000] backdrop-blur-sm shadow-sm sticky top-0 z-50">
       <div class="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
         <div class="w-1/5"></div>
-
-        <n-avatar
-          round
-          :size="40"
-          src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop"
-        />
+        <!-- Logo Centrale -->
+        <div
+          class="absolute left-1/2 -translate-x-1/2 top-6"
+          @click="nextPage('home')"
+        >
+          <div
+            class="w-24 h-24 bg-gradient-to-br from-[#192b388a] to-[#3819198a] rounded-full shadow-lg flex items-center justify-center border-4 overflow-hidden"
+          >
+            <div class="w-[%] h-[%] rounded-full overflow-hidden">
+              <img
+                src="../assets/Loghi/elite bistrot logo.jpg"
+                alt="logo elite bistrot"
+                srcset=""
+              />
+            </div>
+          </div>
+        </div>
 
         <div class="flex items-center gap-3">
           <n-button circle quaternary>
@@ -53,15 +64,12 @@
     </header>
 
     <!-- Contenuto principale -->
-    <main class="max-w-md mx-auto px-4 py-6 flex flex-col gap-8">
+    <main class="max-w-md mx-auto px-6 py-20 flex flex-col gap-8">
       <!-- Promozioni o Info -->
-      <div
-        :bordered="false"
-        class="bg-gradient-to-br from-yellow-400 to-orange-500 p-2 rounded-xl"
-      >
+      <div :bordered="false" class="bg-[#b6af2b57] p-2 rounded-xl">
         <div class="flex items-center gap-3">
           <div
-            class="w-12 h-12 bg-gradient-to-br from-pink-400 to-red-500 rounded-xl flex items-center justify-center shrink-0"
+            class="w-12 h-12 bg-gradient-to-br from-[#383719] to-[#381f19c9] rounded-xl flex items-center justify-center shadow-lg"
           >
             <n-icon :size="24" color="white">
               <svg
@@ -88,9 +96,9 @@
       <div class="flex flex-col gap-6">
         <!-- Sezione Chat Globale -->
         <div class="mb-6 relative">
-          <div class="bg-[#27272a] rounded-2xl shadow-lg p-4 mb-3 h-80">
+          <div class="bg-[#192b388a] rounded-2xl shadow-lg p-4 mb-3 h-60">
             <div class="flex items-center gap-2 mb-3">
-              <n-icon :size="20" color="#8b5cf6">
+              <n-icon :size="20" color="#fcb040">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -125,8 +133,14 @@
               </div>
             </div>
           </div>
-          <div class="absolute -bottom-6 left-0 right-0">
-            <n-button type="warning" size="large" block round @click="openChat">
+          <div class="absolute -bottom-1 left-0 right-0">
+            <n-button
+              type="primary"
+              size="large"
+              block
+              round
+              @click="nextPage('chat')"
+            >
               <template #icon>
                 <n-icon>
                   <svg
@@ -152,12 +166,12 @@
           <!-- Menu -->
           <n-card
             :bordered="false"
-            class="cursor-pointer hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-[#27272a]"
-            @click="openMenu"
+            class="cursor-pointer hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-[#b62b2b67]"
+            @click="nextPage('menu')"
           >
-            <div class="flex flex-col items-center gap-3">
+            <div class="flex flex-col items-center gap-3 relative">
               <div
-                class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center"
+                class="w-16 h-16 bg-gradient-to-br from-[#192b388a] to-[#3819198a] rounded-2xl flex items-center justify-center shadow-lg"
               >
                 <n-icon :size="32" color="white">
                   <svg
@@ -175,8 +189,10 @@
                   </svg>
                 </n-icon>
               </div>
-              <div class="text-center">
-                <h3 class="font-bold text-gray-300">Menu</h3>
+              <div class="text-center absolute top-14">
+                <span class="font-extrabold text-[35px] text-[#e020208a]"
+                  >Menu</span
+                >
                 <p class="text-sm text-gray-500">
                   Sfoglia il menu ed ordina da qui!
                 </p>
@@ -187,12 +203,12 @@
           <!-- Gioca -->
           <n-card
             :bordered="false"
-            class="cursor-pointer hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-[#27272a]"
-            @click="openGame"
+            class="cursor-pointer hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-[#2b5eb667]"
+            @click="nextPage('game')"
           >
             <div class="flex flex-col items-center gap-3">
               <div
-                class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center"
+                class="w-16 h-16 bg-gradient-to-br from-[#192b388a] to-[#3819198a] rounded-2xl flex items-center justify-center shadow-lg"
               >
                 <n-icon :size="32" color="white">
                   <svg
@@ -231,120 +247,92 @@
 
     <!-- Bottom Navigation con Logo Centrale -->
     <nav
-      class="fixed bottom-0 left-0 right-0 bg-[#27272a] shadow-lg border-t border-gray-200"
+      class="fixed bottom-4 left-1/2 -translate-x-1/2 w-[90%] max-w-md bg-[#1e1e1f]/90 backdrop-blur-md rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.4)] border border-[#ffffff1a] z-50"
     >
-      <div class="max-w-md mx-auto">
-        <div class="flex items-center justify-around py-3 relative">
-          <!-- Home -->
-          <n-button
-            text
-            :type="currentTab === 'home' ? 'warning' : 'default'"
-            @click="currentTab = 'home'"
-            class="flex-1"
-          >
-            <template #icon>
-              <n-icon :size="24">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path
-                    d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
-                  ></path>
-                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                </svg>
-              </n-icon>
-            </template>
-          </n-button>
-
-          <!-- Ordini -->
-          <n-button
-            text
-            :type="currentTab === 'orders' ? 'warning' : 'default'"
-            @click="currentTab = 'orders'"
-            class="flex-1"
-          >
-            <template #icon>
-              <n-icon :size="24">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path
-                    d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"
-                  ></path>
-                  <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
-                </svg>
-              </n-icon>
-            </template>
-          </n-button>
-
-          <!-- Logo Centrale -->
-          <div
-            class="absolute left-1/2 -translate-x-1/2 -top-8"
-            @click="openCustomerPage"
-          >
-            <div
-              class="w-16 h-16 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full shadow-lg flex items-center justify-center border-4 border-white"
+      <div class="relative flex items-center gap-2 justify-around py-3 px-2">
+        <!-- Menu -->
+        <n-button
+          :type="currentTab === 'menu' ? 'warning' : 'default'"
+          @click="nextPage('menu')"
+          class="flex-1 flex justify-center"
+        >
+          <n-icon :size="35">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
             >
-              <span class="text-2xl font-bold text-white">CB</span>
-            </div>
-          </div>
+              <path
+                d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"
+              />
+              <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+            </svg>
+          </n-icon>
+        </n-button>
+        <!-- Home -->
+        <n-button
+          :type="currentTab === 'home' ? 'warning' : 'default'"
+          @click="nextPage('')"
+          class="flex-1 flex justify-center"
+        >
+          <n-icon :size="30">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+          </n-icon>
+        </n-button>
 
-          <!-- Profilo -->
-          <n-button
-            text
-            :type="currentTab === 'profile' ? 'warning' : 'default'"
-            @click="currentTab = 'profile'"
-            class="flex-1"
-          >
-            <template #icon>
-              <n-icon :size="24">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-              </n-icon>
-            </template>
-          </n-button>
+        <!-- Profilo -->
 
-          <!-- Impostazioni -->
-          <n-button
-            text
-            :type="currentTab === 'settings' ? 'warning' : 'default'"
-            @click="currentTab = 'settings'"
-            class="flex-1"
-          >
-            <template #icon>
-              <n-icon :size="24">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <circle cx="12" cy="12" r="3"></circle>
-                  <path
-                    d="M12 1v6m0 6v6m5.2-14.8L13.5 7.9m-3 3-3.7 3.7m8.8 0L12 11m0 0L8.3 7.3M23 12h-6m-6 0H1"
-                  ></path>
-                </svg>
-              </n-icon>
-            </template>
-          </n-button>
-        </div>
+        <n-button
+          :type="currentTab === 'profile' ? 'warning' : 'default'"
+          @click="currentTab = 'profile'"
+          class="flex-1 flex justify-center"
+        >
+          <n-icon :size="40">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </n-icon>
+        </n-button>
+
+        <!-- Impostazioni -->
+        <n-button
+          :type="currentTab === 'game' ? 'warning' : 'default'"
+          @click="nextPage('game')"
+          class="flex-1 flex justify-center"
+        >
+          <n-icon :size="24">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="12" r="3"></circle>
+              <path
+                d="M12 1v6m0 6v6m5.2-14.8L13.5 7.9m-3 3-3.7 3.7m8.8 0L12 11m0 0L8.3 7.3M23 12h-6m-6 0H1"
+              />
+            </svg>
+          </n-icon>
+        </n-button>
       </div>
     </nav>
   </div>
@@ -354,10 +342,20 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useMessage } from "naive-ui";
+import { createAvatar } from "@dicebear/core";
+import { avataaars } from "@dicebear/collection";
 
 const message = useMessage();
 const router = useRouter();
 const currentTab = ref("home");
+
+const avatar = createAvatar(avataaars, {
+  seed: "thomas", // qualunque stringa per generare l'avatar
+  size: 80,
+  backgroundColor: [],
+});
+
+const avatarSvg = avatar.toDataUri();
 
 const chatPreview = ref([
   {
@@ -386,25 +384,13 @@ const chatPreview = ref([
   },
 ]);
 
-const openChat = () => {
-  router.push("./chat");
-};
-
-const openMenu = () => {
-  router.push("./menu");
-};
-
-const openGame = () => {
-  router.push("./game");
-};
-
-const openCustomerPage = () => {
-  router.push("./customer");
+const nextPage = (tab) => {
+  currentTab.value = tab;
+  if (tab === "home") {
+    router.push(`/`);
+    return;
+  } else {
+    router.push(`./${tab}`);
+  }
 };
 </script>
-
-<style scoped>
-.n-card {
-  border-radius: 1rem;
-}
-</style>

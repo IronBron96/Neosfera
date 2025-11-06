@@ -107,7 +107,7 @@
 
           <!-- Bottone centrale -->
           <button
-            class="absolute z-20 bg-[#27272a] text-white font-semibold rounded-full shadow-lg active:scale-95 transition px-6 py-3"
+            class="absolute z-20 bg-[#27272a] text-white font-semibold rounded-full shadow-lg active:scale-95 transition"
             :disabled="isSpinning || credits <= 0"
             @click="spin"
           >
@@ -122,13 +122,9 @@
           :class="resultText ? 'opacity-100' : 'opacity-0'"
           class="text-lg font-semibold text-gray-800 text-center transition-opacity duration-300"
         >
-          {{ resultText || "Placeholder" }}
+          {{ resultText }}
         </p>
       </div>
-
-      <p class="mt-2 text-sm text-gray-500 text-center">
-        Hai provato {{ attempts }} {{ attempts === 1 ? "volta" : "volte" }}.
-      </p>
     </main>
 
     <!-- Footer -->
