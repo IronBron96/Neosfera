@@ -1,51 +1,9 @@
 <template>
   <div class="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex flex-col">
-    <!-- Header -->
-    <header class="bg-[#27272a] sticky top-0 z-50 shadow-sm">
-      <div class="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
-        <n-button circle quaternary @click="goBack">
-          <template #icon>
-            <n-icon :size="20">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                color="white"
-              >
-                <polyline points="15 18 9 12 15 6"></polyline>
-              </svg>
-            </n-icon>
-          </template>
-        </n-button>
-
-        <h2 class="text-white font-semibold text-lg">Menu del Bar</h2>
-
-        <n-button circle quaternary>
-          <template #icon>
-            <n-icon :size="20">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                color="white"
-              >
-                <circle cx="12" cy="12" r="1"></circle>
-                <circle cx="12" cy="5" r="1"></circle>
-                <circle cx="12" cy="19" r="1"></circle>
-              </svg>
-            </n-icon>
-          </template>
-        </n-button>
-      </div>
-    </header>
-
     <!-- Contenuto principale -->
-    <main class="max-w-md mx-auto flex-1 px-4 py-4">
+    <main class="max-w-md mx-auto flex-1 px-4 pt-16 pb-28">
       <div class="space-y-6">
+        <span class="text-3xl font-bold text-gray-800 mb-6">Il nostro menù</span>
         <!-- Categorie -->
         <div v-for="cat in menu" :key="cat.id" class="space-y-3">
           <div class="flex items-center gap-2">
@@ -83,8 +41,8 @@
       </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="sticky bottom-10 bg-[#27272a] border-t border-black/10">
+    <!-- Carrello -->
+    <div class="sticky bottom-20 bg-[#27272a] border-t border-black/10 w-[30%] rounded-2xl mx-auto">
       <div class="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
         <div>
           <p class="text-gray-300 text-sm">
@@ -113,7 +71,7 @@
           Ordina
         </n-button>
       </div>
-    </footer>
+    </div>
   </div>
 </template>
 

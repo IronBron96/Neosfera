@@ -50,11 +50,20 @@
         </n-button>
       </div>
 
-      <n-avatar
-        round
-        :size="40"
-        src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop"
-      />
+      <!-- Logo Centrale -->
+      <div
+        v-if="route.name !== 'customer'"
+        class="absolute left-1/2 -translate-x-1/2 top-1"
+        @click="handleNextPage('customer')"
+      >
+        <div
+          class="w-24 h-24 bg-gradient-to-br from-[#192b388a] to-[#3819198a] rounded-full shadow-lg flex items-center justify-center border-4 overflow-hidden"
+        >
+          <div class="w-[%] h-[%] rounded-full overflow-hidden">
+            <img src="../assets/Loghi/elite bistrot logo.jpg" alt="logo elite bistrot" srcset="" />
+          </div>
+        </div>
+      </div>
 
       <div class="flex items-center gap-3">
         <n-button circle quaternary>
@@ -100,12 +109,18 @@
 <script setup>
   import {useUser} from '../lib/directus.ts'
   import {logout} from '../lib/auth.ts'
+  import {nextPage} from '../utils/globals.js'
 
+  const route = useRoute()
   const router = useRouter()
   const user = useUser()
 
   async function handleLogout() {
     await logout() // fa già il controllo sul refresh
     router.push('/login')
+  }
+
+  function handleNextPage(page) {
+    nextPage(page, router)
   }
 </script>

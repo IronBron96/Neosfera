@@ -1,5 +1,5 @@
 <template>
-  <div class="layout-default">
+  <div class="min-h-screen bg-[#29272a]/20">
     <HeaderSection />
     <main>
       <n-config-provider>
