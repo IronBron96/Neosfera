@@ -11,6 +11,10 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    Footer: typeof import('./src/components/Footer.vue')['default']
+    FooterSection: typeof import('./src/components/FooterSection.vue')['default']
+    Header: typeof import('./src/components/Header.vue')['default']
+    HeaderSection: typeof import('./src/components/HeaderSection.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     NAvatar: typeof import('naive-ui')['NAvatar']
     NButton: typeof import('naive-ui')['NButton']

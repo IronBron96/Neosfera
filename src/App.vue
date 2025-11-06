@@ -1,13 +1,14 @@
 <template>
-  <n-config-provider>
-    <n-message-provider>
-      <n-dialog-provider>
-        <n-notification-provider>
-          <router-view />
-        </n-notification-provider>
-      </n-dialog-provider>
-    </n-message-provider>
-  </n-config-provider>
+  <component :is="layoutComponent" />
 </template>
 
-<script setup></script>
+<script setup>
+  import {useRoute} from 'vue-router'
+  import DefaultLayout from './layouts/DefaultLayout.vue'
+  import {computed} from 'vue'
+
+  const route = useRoute()
+  const layoutComponent = computed(() =>
+    route.meta.layout === 'none' ? 'router-view' : DefaultLayout
+  )
+</script>
