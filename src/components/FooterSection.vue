@@ -74,8 +74,8 @@
 
         <!-- Impostazioni -->
         <n-button
-          :type="currentTab === 'game' ? 'primary' : 'default'"
-          @click="handleNextPage('game')"
+          :type="currentTab === 'games' ? 'primary' : 'default'"
+          @click="handleNextPage('games')"
           class="flex-1 flex justify-center"
         >
           <n-icon :size="24">
@@ -121,7 +121,8 @@ function handleNextPage(page) {
 onMounted(async () => {
   await router.isReady();
   ready.value = true;
-  currentTab.value = route.path === "/" ? "" : route.path.replace("/", "");
+  const parts = route.path.split("/").filter(Boolean); // divide e rimuove eventuali stringhe vuote
+  currentTab.value = parts[0] || ""; // prende solo la prima parte, es. "games"
 });
 
 // Aggiorna la tab attiva quando cambia la route
@@ -129,7 +130,8 @@ watch(
   () => route.path,
   (newPath) => {
     if (ready.value) {
-      currentTab.value = newPath === "/" ? "" : newPath.replace("/", "");
+      const parts = newPath.split("/").filter(Boolean);
+      currentTab.value = parts[0] || "";
     }
   }
 );

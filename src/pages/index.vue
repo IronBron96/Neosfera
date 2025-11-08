@@ -103,7 +103,7 @@
           <n-card
             :bordered="false"
             class="cursor-pointer rounded-xl hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-beige h-[150px]"
-            @click="handleNextPage('game')"
+            @click="handleNextPage('games')"
           >
             <div class="flex flex-col items-center">
               <div

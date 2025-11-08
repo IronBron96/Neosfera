@@ -2,9 +2,21 @@
   <!-- Header con avatar utente -->
   <header class="bg-[#27272a] backdrop-blur-sm shadow-sm sticky top-0 z-50">
     <div class="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
-      <div class="w-1/5">
-        <!-- 🔽 Icona logout -->
-        <n-button circle quaternary @click="handleLogout" title="Esci">
+      <div class="flex gap-4 w-1/5">
+        <!-- 🔽 Icona Back -->
+        <n-button
+          v-if="route.path !== '/'"
+          circle
+          quaternary
+          @click="
+            route.path !== '/games' && route.path.startsWith('/games')
+              ? router.push('/games')
+              : route.path === '/games'
+                ? router.push('/')
+                : router.back()
+          "
+          title="Torna alla Home"
+        >
           <template #icon>
             <n-icon :size="20">
               <svg
@@ -15,16 +27,15 @@
                 stroke-width="2"
                 color="white"
               >
-                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                <polyline points="16 17 21 12 16 7"></polyline>
-                <line x1="21" y1="12" x2="9" y2="12"></line>
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
               </svg>
             </n-icon>
           </template>
         </n-button>
         <!-- 🔽 Icona Admin Panel -->
         <n-button
-          v-if="user?.role === 'admin'"
+          v-if="user?.role === '43f1bbc3-42bc-46d0-975f-95230268c015'"
           circle
           quaternary
           @click="router.push('/adminPanel')"
@@ -60,7 +71,11 @@
           class="w-24 h-24 bg-gradient-to-br from-[#192b388a] to-[#3819198a] rounded-full shadow-lg flex items-center justify-center border-4 overflow-hidden"
         >
           <div class="w-[%] h-[%] rounded-full overflow-hidden">
-            <img src="../assets/Loghi/elite bistrot logo.jpg" alt="logo elite bistrot" srcset="" />
+            <img
+              src="../assets/Loghi/elite bistrot logo.jpg"
+              alt="logo elite bistrot"
+              srcset=""
+            />
           </div>
         </div>
       </div>
@@ -84,7 +99,8 @@
           </template>
         </n-button>
 
-        <n-button circle quaternary>
+        <!-- 🔽 Icona logout -->
+        <n-button circle quaternary @click="handleLogout" title="Esci">
           <template #icon>
             <n-icon :size="20">
               <svg
@@ -95,9 +111,9 @@
                 stroke-width="2"
                 color="white"
               >
-                <circle cx="12" cy="12" r="1"></circle>
-                <circle cx="12" cy="5" r="1"></circle>
-                <circle cx="12" cy="19" r="1"></circle>
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                <polyline points="16 17 21 12 16 7"></polyline>
+                <line x1="21" y1="12" x2="9" y2="12"></line>
               </svg>
             </n-icon>
           </template>
@@ -107,20 +123,26 @@
   </header>
 </template>
 <script setup>
-  import {useUser} from '../lib/directus.ts'
-  import {logout} from '../lib/auth.ts'
-  import {nextPage} from '../utils/globals.js'
+import { useRoute, useRouter } from "vue-router";
+import { getUser } from "../lib/directus.ts";
+import { logout } from "../lib/auth.ts";
+import { nextPage } from "../utils/globals.js";
+import { onMounted, ref } from "vue";
 
-  const route = useRoute()
-  const router = useRouter()
-  const user = useUser()
+const route = useRoute();
+const router = useRouter();
+const user = ref(null);
 
-  async function handleLogout() {
-    await logout() // fa già il controllo sul refresh
-    router.push('/login')
-  }
+async function handleLogout() {
+  logout(); // fa già il controllo sul refresh
+  router.push("/login");
+}
 
-  function handleNextPage(page) {
-    nextPage(page, router)
-  }
+function handleNextPage(page) {
+  nextPage(page, router);
+}
+
+onMounted(async () => {
+  user.value = await getUser();
+});
 </script>

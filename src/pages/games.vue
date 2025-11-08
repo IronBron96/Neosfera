@@ -30,14 +30,18 @@
         </div>
       </div>
     </div>
+    <div v-if="selectedGame">
+      <component :is="selectedGameComponent" />
+    </div>
   </div>
 </template>
 
 <script setup>
-import { nextPage } from "../utils/globals.js";
-import { useRouter } from "vue-router";
+import { watch } from "vue";
+import { useRouter, useRoute } from "vue-router";
 
 const router = useRouter();
+const route = useRoute();
 
 // 🔍 Importa dinamicamente tutti i componenti di gioco
 const modules = import.meta.glob("../pages/games/*.vue", { eager: true });
@@ -53,7 +57,8 @@ const games = Object.fromEntries(
 const selectedGame = ref(null);
 
 function selectGame(name) {
-  nextPage(`games/${name}`, router);
+  selectedGame.value = name;
+  router.push(`/games/${name}`);
 }
 
 function exitGame() {
@@ -125,6 +130,21 @@ function getIcon(name) {
 
   return icons[name] || icons.luckyWheel;
 }
+
+watch(
+  () => route.path,
+  (path) => {
+    if (path === "/games") {
+      selectedGame.value = null;
+    } else {
+      const match = path.match(/\/games\/([^\/]+)/);
+      if (match && games[match[1]]) {
+        selectedGame.value = match[1];
+      }
+    }
+  },
+  { immediate: true }
+);
 
 onMounted(() => {
   document.body.style.overflow = "hidden";
