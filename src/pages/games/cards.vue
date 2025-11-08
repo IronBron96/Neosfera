@@ -153,4 +153,12 @@ function selectCard(index) {
 }
 
 startGame();
+
+onMounted(() => {
+  document.body.style.overflow = "hidden";
+});
+
+onUnmounted(() => {
+  document.body.style.overflow = "";
+});
 </script>

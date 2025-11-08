@@ -112,6 +112,14 @@ function chooseDoor(index) {
 
 // start automatico
 startGame();
+
+onMounted(() => {
+  document.body.style.overflow = "hidden";
+});
+
+onUnmounted(() => {
+  document.body.style.overflow = "";
+});
 </script>
 
 <style scoped>

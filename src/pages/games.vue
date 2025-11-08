@@ -145,8 +145,4 @@ watch(
   },
   { immediate: true }
 );
-
-onMounted(() => {
-  document.body.style.overflow = "hidden";
-});
 </script>

@@ -214,6 +214,14 @@ function spin() {
     isSpinning.value = false;
   }, 5000);
 }
+
+onMounted(() => {
+  document.body.style.overflow = "hidden";
+});
+
+onUnmounted(() => {
+  document.body.style.overflow = "";
+});
 </script>
 
 <style scoped>
