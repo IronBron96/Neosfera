@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="min-h-screen flex flex-col items-center overflow-hidden relative mt-16"
-  >
+  <div class="relative min-h-screen flex flex-col items-center mt-16">
     <!-- Crediti -->
     <span
       class="text-[60px] bg-[#eaeaeb]/60 border border-white/20 rounded-2xl backdrop-blur-sm px-6 w-fit mx-auto shadow-md mb-6"
@@ -49,7 +47,7 @@
     <!-- Messaggio finale -->
     <div
       v-if="resultText"
-      class="absolute bottom-24 text-2xl font-semibold text-center text-emerald-700 bg-white/70 px-6 py-3 rounded-xl shadow-md backdrop-blur-sm transition-opacity duration-500"
+      class="absolute bottom-64 text-2xl font-semibold text-center text-emerald-700 bg-white/70 px-6 py-3 rounded-xl shadow-md backdrop-blur-sm transition-opacity duration-500"
     >
       {{ resultText }}
     </div>
@@ -57,7 +55,7 @@
     <!-- Bottone restart -->
     <button
       v-if="gameOver"
-      class="absolute bottom-10 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-2 rounded-xl shadow-md transition"
+      class="absolute bottom-52 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-2 rounded-xl shadow-md transition"
       @click="startGame"
     >
       Gioca ancora
