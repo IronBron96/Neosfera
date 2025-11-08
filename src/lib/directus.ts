@@ -1,20 +1,20 @@
 // src/lib/directus.ts
-import {createDirectus, rest, authentication, readMe} from '@directus/sdk'
+import { createDirectus, rest, authentication, readMe } from "@directus/sdk";
 
-const directus = createDirectus('https://directus-thomas.webcloud.cloud/')
+const directus = createDirectus("https://directus-thomas.webcloud.cloud/")
   .with(rest())
-  .with(authentication('json'))
+  .with(authentication("json"));
 
-export default directus
+export default directus;
 
 export async function useUser() {
-  const token = localStorage.getItem('directus_token')
-  if (!token) return null
+  const token = localStorage.getItem("directus_token");
+  if (!token) return null;
 
-  await directus.setToken(token)
+  await directus.setToken(token);
   try {
-    return await directus.request(readMe())
+    return await directus.request(readMe());
   } catch {
-    return null
+    return null;
   }
 }

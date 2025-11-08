@@ -1,13 +1,13 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex flex-col">
+  <div class="min-h-screen flex flex-col">
     <!-- Contenuto principale -->
     <main class="max-w-md mx-auto flex-1 px-4 pt-16 pb-28">
       <div class="space-y-6">
-        <span class="text-3xl font-bold text-gray-800 mb-6">Il nostro menù</span>
+        <span class="text-3xl font-bold text-light mb-6">Il nostro menù</span>
         <!-- Categorie -->
         <div v-for="cat in menu" :key="cat.id" class="space-y-3">
           <div class="flex items-center gap-2">
-            <n-icon color="#f59e0b" :size="22">
+            <n-icon color="#EF8354" :size="22">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -18,7 +18,7 @@
                 <path d="M4 6h16M4 10h16M10 14h10M4 18h10" />
               </svg>
             </n-icon>
-            <h3 class="text-gray-800 font-semibold text-lg">{{ cat.name }}</h3>
+            <h3 class="text-beige font-semibold text-lg">{{ cat.name }}</h3>
           </div>
 
           <!-- Prodotti -->
@@ -31,9 +31,17 @@
               @click="addToCart(item)"
             >
               <div class="flex flex-col items-center text-center gap-2">
-                <img :src="item.image" alt="" class="w-20 h-20 rounded-xl object-cover" />
-                <h4 class="font-bold text-gray-800 text-sm">{{ item.name }}</h4>
-                <p class="text-xs text-gray-500">€ {{ item.price.toFixed(2) }}</p>
+                <img
+                  :src="item.image"
+                  alt=""
+                  class="w-20 h-20 rounded-xl object-cover"
+                />
+                <div>
+                  <h4 class="font-bold text-navi text-sm">{{ item.name }}</h4>
+                  <p class="text-xs text-gray-500">
+                    € {{ item.price.toFixed(2) }}
+                  </p>
+                </div>
               </div>
             </n-card>
           </div>
@@ -42,15 +50,25 @@
     </main>
 
     <!-- Carrello -->
-    <div class="sticky bottom-20 bg-[#27272a] border-t border-black/10 rounded-2xl mx-auto">
+    <div
+      class="sticky bottom-20 bg-lightDark border-t border-black/10 rounded-2xl mx-auto"
+    >
       <div class="mx-auto px-4 py-3 flex items-center justify-between gap-8">
         <div>
           <p class="text-gray-300 text-sm">
             Totale:
-            <span class="font-semibold text-white">€ {{ total.toFixed(2) }}</span>
+            <span class="font-semibold text-white"
+              >€ {{ total.toFixed(2) }}</span
+            >
           </p>
         </div>
-        <n-button type="warning" round size="large" @click="checkout" :disabled="cart.length === 0">
+        <n-button
+          type="primary"
+          round
+          size="large"
+          @click="checkout"
+          :disabled="cart.length === 0"
+        >
           <template #icon>
             <n-icon>
               <svg
@@ -76,107 +94,69 @@
 </template>
 
 <script setup>
-  import {ref, computed} from 'vue'
-  import {useRouter} from 'vue-router'
-  import {useMessage} from 'naive-ui'
+import { useRouter } from "vue-router";
+import { useMessage } from "naive-ui";
+import directus from "@/lib/directus";
+import { readItems } from "@directus/sdk";
 
-  const router = useRouter()
-  const message = useMessage()
+const router = useRouter();
+const message = useMessage();
 
-  const menu = ref([
-    {
-      id: 1,
-      name: 'Caffetteria',
-      items: [
-        {
-          id: 'c1',
-          name: 'Espresso',
-          price: 1.2,
-          image:
-            'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=200&h=200&fit=crop',
-        },
-        {
-          id: 'c2',
-          name: 'Cappuccino',
-          price: 1.8,
-          image:
-            'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=200&h=200&fit=crop',
-        },
-        {
-          id: 'c3',
-          name: 'Latte Macchiato',
-          price: 2.0,
-          image:
-            'https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?w=200&h=200&fit=crop',
-        },
-        {
-          id: 'c4',
-          name: 'Caffè Americano',
-          price: 1.5,
-          image:
-            'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=200&h=200&fit=crop',
-        },
-      ],
-    },
-    {
-      id: 2,
-      name: 'Dolci & Snack',
-      items: [
-        {
-          id: 'd1',
-          name: 'Cornetto',
-          price: 1.3,
-          image:
-            'https://images.unsplash.com/photo-1629385701021-93c2d1b3127e?w=200&h=200&fit=crop',
-        },
-        {
-          id: 'd2',
-          name: 'Tiramisù',
-          price: 3.5,
-          image:
-            'https://images.unsplash.com/photo-1617196039897-e8f8ff8bd3ef?w=200&h=200&fit=crop',
-        },
-        {
-          id: 'd3',
-          name: 'Muffin al Cioccolato',
-          price: 2.0,
-          image:
-            'https://images.unsplash.com/photo-1629441452145-f8fcd64a6dfd?w=200&h=200&fit=crop',
-        },
-        {
-          id: 'd4',
-          name: 'Biscotti Artigianali',
-          price: 1.5,
-          image:
-            'https://images.unsplash.com/photo-1606813902911-0d0d2179ec1e?w=200&h=200&fit=crop',
-        },
-      ],
-    },
-  ])
+const menu = ref([]);
 
-  const cart = ref([])
+const cart = ref([]);
 
-  const total = computed(() => cart.value.reduce((sum, item) => sum + item.price, 0))
+const total = computed(() =>
+  cart.value.reduce((sum, item) => sum + item.price, 0)
+);
 
-  function addToCart(item) {
-    cart.value.push(item)
-    message.success(`${item.name} aggiunto al carrello!`)
+function addToCart(item) {
+  cart.value.push(item);
+  message.success(`${item.name} aggiunto al carrello!`);
+}
+
+function checkout() {
+  if (cart.value.length === 0) return;
+  message.success(`Ordine confermato! Totale: €${total.value.toFixed(2)}`);
+  cart.value = [];
+}
+
+function goBack() {
+  router.back(); // torna alla dashboard
+}
+
+onMounted(async () => {
+  try {
+    const categories = await directus.request(
+      readItems("ns_categories", {
+        fields: ["id", "name", "sort", "ns_products.ns_products_id.*"],
+        sort: ["sort"],
+      })
+    );
+
+    console.log(categories);
+
+    // Mappiamo i dati nella struttura desiderata
+    menu.value = categories.map((cat) => ({
+      id: cat.id,
+      name: cat.name,
+      items: cat.ns_products.map((p) => ({
+        id: p.ns_products_id.id,
+        name: p.ns_products_id.name,
+        price: parseFloat(p.ns_products_id.price),
+        description: p.ns_products_id.description,
+        image: p.ns_products_id.img_url || "https://via.placeholder.com/200", // placeholder se mancante
+      })),
+    }));
+  } catch (error) {
+    console.error("Errore nel caricamento del menù:", error);
   }
-
-  function checkout() {
-    if (cart.value.length === 0) return
-    message.success(`Ordine confermato! Totale: €${total.value.toFixed(2)}`)
-    cart.value = []
-  }
-
-  function goBack() {
-    router.back() // torna alla dashboard
-  }
+});
 </script>
 
 <style scoped>
-  .n-card {
-    border-radius: 1rem;
-    background: #fff;
-  }
+.n-card {
+  border-radius: 1rem;
+  background: #fff;
+}
 </style>

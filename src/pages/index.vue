@@ -3,10 +3,10 @@
     <!-- Contenuto principale -->
     <main class="max-w-md mx-auto px-6 pt-12 flex flex-col gap-4">
       <!-- Promozioni o Info -->
-      <div :bordered="false" class="bg-[#fc9e40] p-2 rounded-xl">
+      <div :bordered="false" class="bg-light p-2 rounded-xl">
         <div class="flex items-center gap-3">
           <div
-            class="w-12 h-12 bg-gradient-to-br from-[#383719] to-[#381f19c9] rounded-xl flex items-center justify-center shadow-lg"
+            class="w-12 h-12 bg-gradient-to-br from-[#ccc617] to-[#c44222c9] rounded-xl flex items-center justify-center shadow-lg"
           >
             <n-icon :size="24" color="white">
               <svg
@@ -24,8 +24,8 @@
             </n-icon>
           </div>
           <div class="flex-1">
-            <h3 class="font-semibold text-white">Offerta del Giorno</h3>
-            <p class="text-sm text-gray-200">Caffè + Cornetto a €2.50</p>
+            <h3 class="font-bold text-xl text-grayish">Offerta del Giorno</h3>
+            <p class="text-sm text-grayish">Caffè + Cornetto a €2.50</p>
           </div>
         </div>
       </div>
@@ -33,9 +33,9 @@
       <div class="flex flex-col">
         <!-- Sezione Chat Globale -->
         <div class="mb-6 relative">
-          <div class="bg-[#192b388a] rounded-2xl shadow-lg p-4 mb-3 h-60">
+          <div class="bg-lightNavi rounded-2xl shadow-lg p-4 mb-3 h-60">
             <div class="flex items-center gap-2 mb-3">
-              <n-icon :size="20" color="#fcb040">
+              <n-icon :size="20" color="#2D3142">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -48,7 +48,7 @@
                   ></path>
                 </svg>
               </n-icon>
-              <h3 class="font-semibold text-gray-200">Chat Globale</h3>
+              <h3 class="font-semibold text-light">Chat Globale</h3>
             </div>
 
             <div class="space-y-2 h-32 mb-3">
@@ -60,23 +60,20 @@
                 <n-avatar :size="24" round :src="msg.avatar" />
                 <div class="flex-1">
                   <div class="flex items-baseline gap-2">
-                    <span class="text-sm font-medium text-gray-400">{{
+                    <span class="text-sm font-semibold text-beige">{{
                       msg.username
                     }}</span>
-                    <span class="text-xs text-gray-500">{{ msg.time }}</span>
+                    <span class="text-xs text-navi">{{ msg.time }}</span>
                   </div>
                   <p class="text-sm text-gray-200">{{ msg.message }}</p>
                 </div>
               </div>
             </div>
           </div>
-          <div class="absolute -bottom-1 left-0 right-0">
+          <div class="absolute -bottom-1 left-0 right-0 m-auto w-max">
             <n-button
-              :theme-overrides="{
-                color: '#fcb040',
-              }"
+              type="success"
               size="large"
-              block
               round
               @click="handleNextPage('chat')"
             >
@@ -105,12 +102,12 @@
           <!-- Gioca -->
           <n-card
             :bordered="false"
-            class="cursor-pointer rounded-xl hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-[#2b5eb6] h-[150px]"
+            class="cursor-pointer rounded-xl hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-beige h-[150px]"
             @click="handleNextPage('game')"
           >
             <div class="flex flex-col items-center">
               <div
-                class="w-16 h-16 bg-gradient-to-br from-[#192b388a] to-[#3819198a] rounded-2xl flex items-center justify-center shadow-lg"
+                class="w-16 h-16 bg-gradient-to-br from-[#103d6a] to-[#581452] rounded-2xl flex items-center justify-center shadow-lg"
               >
                 <n-icon :size="32" color="white">
                   <svg
@@ -136,7 +133,7 @@
                 </n-icon>
               </div>
               <div class="text-center">
-                <h3 class="font-extrabold text-[35px] text-[#2e3c66]">Gioca</h3>
+                <h3 class="font-extrabold text-[35px] text-[#68275b]">Gioca</h3>
               </div>
             </div>
           </n-card>
@@ -144,12 +141,12 @@
           <!-- Menu -->
           <n-card
             :bordered="false"
-            class="cursor-pointer rounded-xl hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-[#b62b2b] h-[150px]"
+            class="cursor-pointer rounded-xl hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-beige h-[150px]"
             @click="handleNextPage('menu')"
           >
             <div class="flex flex-col items-center relative h-[130px]">
               <div
-                class="w-16 h-16 bg-gradient-to-br from-[#192b388a] to-[#3819198a] rounded-2xl flex items-center justify-center shadow-lg"
+                class="w-16 h-16 bg-gradient-to-br from-[#103d6a] to-[#581414] rounded-2xl flex items-center justify-center shadow-lg"
               >
                 <n-icon :size="32" color="white">
                   <svg
@@ -181,24 +178,10 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 import { useRouter } from "vue-router";
-import { useMessage } from "naive-ui";
-import { createAvatar } from "@dicebear/core";
-import { avataaars } from "@dicebear/collection";
 import { nextPage } from "../utils/globals.js";
 
-const message = useMessage();
 const router = useRouter();
-const currentTab = ref("");
-
-const avatar = createAvatar(avataaars, {
-  seed: "thomas", // qualunque stringa per generare l'avatar
-  size: 80,
-  backgroundColor: [],
-});
-
-const avatarSvg = avatar.toDataUri();
 
 const chatPreview = ref([
   {
@@ -228,7 +211,6 @@ const chatPreview = ref([
 ]);
 
 function handleNextPage(page) {
-  currentTab.value = page;
   nextPage(page, router);
 }
 </script>
