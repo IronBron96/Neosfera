@@ -92,28 +92,31 @@ function startGame() {
   resultText.value = "";
   canSelect = false;
 
-  const winnerIndex = Math.floor(Math.random() * 9);
+  // Carta “guida”: scegliamo una carta a caso per mostrare la stella
+  const guideIndex = Math.floor(Math.random() * 9);
+
   cards.value = Array.from({ length: 9 }, (_, i) => ({
     id: i + "-" + Math.random(),
-    isWinner: i === winnerIndex,
-    flipped: true,
+    flipped: true, // tutte girate all’inizio
+    isWinner: i === guideIndex, // solo la carta guida mostra la stella iniziale
   }));
 
   positions.value = [...gridPositions];
 
   setTimeout(() => {
-    cards.value.forEach((c) => (c.flipped = false));
+    // Copriamo tutte le carte (stella iniziale scompare)
+    cards.value.forEach((c) => ((c.flipped = false), (c.isWinner = false)));
 
     setTimeout(() => {
-      animateShuffle(15, 60, () => {
+      animateShuffle(50, 30, () => {
         canSelect = true;
       });
     }, 500);
-  }, 2000);
+  }, 1000);
 }
 
 // Shuffle veloce
-function animateShuffle(times, speed = 800, callback) {
+function animateShuffle(times, speed = 0, callback) {
   if (times <= 0) return callback?.();
 
   const i = Math.floor(Math.random() * 9);
@@ -131,25 +134,23 @@ function animateShuffle(times, speed = 800, callback) {
   });
 }
 
-// Ora la vittoria dipende solo dalla carta scelta
+// Selezione della carta: 5% di possibilità di vittoria
 function selectCard(index) {
   if (!canSelect || gameOver.value) return;
   canSelect = false;
   credits.value--;
 
-  cards.value[index].flipped = true;
-
-  const isWin = cards.value[index].isWinner; // <--- solo carta vincente
+  cards.value[index].flipped = true; // la carta si gira
+  const isWin = Math.random() < 0.05; // 5% di possibilità
+  if (isWin) cards.value[index].isWinner = true; // mostra stella solo se vince
 
   setTimeout(() => {
     resultText.value = isWin ? "🎉 Hai vinto un caffè!" : "💔 Ritenta!";
     gameOver.value = true;
 
     if (isWin) credits.value++;
-  }, 1000);
+  }, 500);
 }
 
 startGame();
 </script>
-
-<style scoped></style>

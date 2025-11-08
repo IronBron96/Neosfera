@@ -3,7 +3,7 @@
     <!-- Contenuto principale -->
     <main class="max-w-md mx-auto px-6 pt-12 flex flex-col gap-4">
       <!-- Promozioni o Info -->
-      <div :bordered="false" class="bg-[#fcb040] p-2 rounded-xl">
+      <div :bordered="false" class="bg-[#fc9e40] p-2 rounded-xl">
         <div class="flex items-center gap-3">
           <div
             class="w-12 h-12 bg-gradient-to-br from-[#383719] to-[#381f19c9] rounded-xl flex items-center justify-center shadow-lg"
@@ -30,7 +30,7 @@
         </div>
       </div>
 
-      <div class="flex flex-col gap-4">
+      <div class="flex flex-col">
         <!-- Sezione Chat Globale -->
         <div class="mb-6 relative">
           <div class="bg-[#192b388a] rounded-2xl shadow-lg p-4 mb-3 h-60">
@@ -43,18 +43,26 @@
                   stroke="currentColor"
                   stroke-width="2"
                 >
-                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                  <path
+                    d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                  ></path>
                 </svg>
               </n-icon>
               <h3 class="font-semibold text-gray-200">Chat Globale</h3>
             </div>
 
             <div class="space-y-2 h-32 mb-3">
-              <div v-for="msg in chatPreview" :key="msg.id" class="flex items-start gap-2">
+              <div
+                v-for="msg in chatPreview"
+                :key="msg.id"
+                class="flex items-start gap-2"
+              >
                 <n-avatar :size="24" round :src="msg.avatar" />
                 <div class="flex-1">
                   <div class="flex items-baseline gap-2">
-                    <span class="text-sm font-medium text-gray-400">{{ msg.username }}</span>
+                    <span class="text-sm font-medium text-gray-400">{{
+                      msg.username
+                    }}</span>
                     <span class="text-xs text-gray-500">{{ msg.time }}</span>
                   </div>
                   <p class="text-sm text-gray-200">{{ msg.message }}</p>
@@ -81,7 +89,9 @@
                     stroke="currentColor"
                     stroke-width="2"
                   >
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    <path
+                      d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                    ></path>
                   </svg>
                 </n-icon>
               </template>
@@ -92,43 +102,13 @@
 
         <!-- Sezione Azioni Principali -->
         <div class="grid grid-cols-2 gap-4">
-          <!-- Menu -->
-          <n-card
-            :bordered="false"
-            class="cursor-pointer hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-[#b62b2b]"
-            @click="handleNextPage('menu')"
-          >
-            <div class="flex flex-col items-center gap-3 relative h-[130px]">
-              <div
-                class="w-16 h-16 bg-gradient-to-br from-[#192b388a] to-[#3819198a] rounded-2xl flex items-center justify-center shadow-lg"
-              >
-                <n-icon :size="32" color="white">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  >
-                    <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path>
-                    <path d="M7 2v20"></path>
-                    <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path>
-                  </svg>
-                </n-icon>
-              </div>
-              <div class="text-center">
-                <span class="font-extrabold text-[35px] text-[#68272b]">Menu</span>
-              </div>
-            </div>
-          </n-card>
-
           <!-- Gioca -->
           <n-card
             :bordered="false"
-            class="cursor-pointer hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-[#2b5eb6]"
+            class="cursor-pointer rounded-xl hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-[#2b5eb6] h-[150px]"
             @click="handleNextPage('game')"
           >
-            <div class="flex flex-col items-center gap-3">
+            <div class="flex flex-col items-center">
               <div
                 class="w-16 h-16 bg-gradient-to-br from-[#192b388a] to-[#3819198a] rounded-2xl flex items-center justify-center shadow-lg"
               >
@@ -160,6 +140,40 @@
               </div>
             </div>
           </n-card>
+
+          <!-- Menu -->
+          <n-card
+            :bordered="false"
+            class="cursor-pointer rounded-xl hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-[#b62b2b] h-[150px]"
+            @click="handleNextPage('menu')"
+          >
+            <div class="flex flex-col items-center relative h-[130px]">
+              <div
+                class="w-16 h-16 bg-gradient-to-br from-[#192b388a] to-[#3819198a] rounded-2xl flex items-center justify-center shadow-lg"
+              >
+                <n-icon :size="32" color="white">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path>
+                    <path d="M7 2v20"></path>
+                    <path
+                      d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"
+                    ></path>
+                  </svg>
+                </n-icon>
+              </div>
+              <div class="text-center">
+                <span class="font-extrabold text-[35px] text-[#68272b]"
+                  >Menu</span
+                >
+              </div>
+            </div>
+          </n-card>
         </div>
       </div>
     </main>
@@ -167,51 +181,54 @@
 </template>
 
 <script setup>
-  import {ref} from 'vue'
-  import {useRouter} from 'vue-router'
-  import {useMessage} from 'naive-ui'
-  import {createAvatar} from '@dicebear/core'
-  import {avataaars} from '@dicebear/collection'
-  import {nextPage} from '../utils/globals.js'
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+import { useMessage } from "naive-ui";
+import { createAvatar } from "@dicebear/core";
+import { avataaars } from "@dicebear/collection";
+import { nextPage } from "../utils/globals.js";
 
-  const message = useMessage()
-  const router = useRouter()
-  const currentTab = ref('')
+const message = useMessage();
+const router = useRouter();
+const currentTab = ref("");
 
-  const avatar = createAvatar(avataaars, {
-    seed: 'thomas', // qualunque stringa per generare l'avatar
-    size: 80,
-    backgroundColor: [],
-  })
+const avatar = createAvatar(avataaars, {
+  seed: "thomas", // qualunque stringa per generare l'avatar
+  size: 80,
+  backgroundColor: [],
+});
 
-  const avatarSvg = avatar.toDataUri()
+const avatarSvg = avatar.toDataUri();
 
-  const chatPreview = ref([
-    {
-      id: 1,
-      username: 'Marco',
-      avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=50&h=50&fit=crop',
-      message: 'Il caffè oggi è fantastico! ☕',
-      time: '10:30',
-    },
-    {
-      id: 2,
-      username: 'Sofia',
-      avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&h=50&fit=crop',
-      message: 'Qualcuno sa se hanno ancora i croissant?',
-      time: '10:32',
-    },
-    {
-      id: 3,
-      username: 'Luca',
-      avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=50&h=50&fit=crop',
-      message: 'Consiglio il tiramisù! 🍰',
-      time: '10:35',
-    },
-  ])
+const chatPreview = ref([
+  {
+    id: 1,
+    username: "Marco",
+    avatar:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=50&h=50&fit=crop",
+    message: "Il caffè oggi è fantastico! ☕",
+    time: "10:30",
+  },
+  {
+    id: 2,
+    username: "Sofia",
+    avatar:
+      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&h=50&fit=crop",
+    message: "Qualcuno sa se hanno ancora i croissant?",
+    time: "10:32",
+  },
+  {
+    id: 3,
+    username: "Luca",
+    avatar:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=50&h=50&fit=crop",
+    message: "Consiglio il tiramisù! 🍰",
+    time: "10:35",
+  },
+]);
 
-  function handleNextPage(page) {
-    currentTab.value = page
-    nextPage(page, router)
-  }
+function handleNextPage(page) {
+  currentTab.value = page;
+  nextPage(page, router);
+}
 </script>

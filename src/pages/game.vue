@@ -77,7 +77,14 @@ function formatName(name) {
   switch (name) {
     case "luckyWheel":
       return "Ruota della Fortuna";
-    // Aggiungi altri casi se necessario
+    case "cards":
+      return "Gioco delle Carte";
+    case "doors":
+      return "Scegli la Porta";
+    case "slotMachine":
+      return "Slot Machine";
+    case "numbers":
+      return "Indovina il numero";
   }
   return name
     .replace(/([A-Z])/g, " $1")
