@@ -1,7 +1,7 @@
 export function nextPage(tab, router) {
-  if (tab === 'home') {
-    router.push('/')
+  if (tab === "home") {
+    router.push("/");
   } else {
-    router.push(`/${tab}`)
+    router.push(`/${tab}`);
   }
 }

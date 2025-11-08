@@ -17,12 +17,14 @@
 </template>
 
 <script setup>
-  import HeaderSection from '../components/HeaderSection.vue'
-  import FooterSection from '../components/FooterSection.vue'
+import HeaderSection from "../components/HeaderSection.vue";
+import FooterSection from "../components/FooterSection.vue";
 </script>
 
 <style scoped>
-  main {
-    min-height: calc(100vh - 200px); /* regola in base all’altezza header/footer */
-  }
+main {
+  min-height: calc(
+    100vh - 200px
+  ); /* regola in base all’altezza header/footer */
+}
 </style>

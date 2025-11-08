@@ -16,6 +16,7 @@ declare module 'vue' {
     Header: typeof import('./src/components/Header.vue')['default']
     HeaderSection: typeof import('./src/components/HeaderSection.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    LuckyWheel: typeof import('./src/components/games/luckyWheel.vue')['default']
     NAvatar: typeof import('naive-ui')['NAvatar']
     NButton: typeof import('naive-ui')['NButton']
     NCard: typeof import('naive-ui')['NCard']
