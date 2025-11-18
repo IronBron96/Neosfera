@@ -1,6 +1,8 @@
 <template>
   <!-- Header con avatar utente -->
-  <header class="bg-[#27272a] backdrop-blur-sm shadow-sm sticky top-0 z-50">
+  <header
+    class="bg-[#a300ff] border-b-[4px] border-black shadow-[0_6px_0_rgba(0,0,0,1)] sticky top-0 z-50"
+  >
     <div class="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
       <div class="flex gap-4 w-1/5">
         <!-- 🔽 Icona Back -->
@@ -61,21 +63,37 @@
         </n-button>
       </div>
 
-      <!-- Logo Centrale -->
+      <!-- Logo Centrale Migliorato -->
       <div
         v-if="route.name !== 'customer'"
-        class="absolute left-1/2 -translate-x-1/2 top-1"
+        class="absolute left-1/2 -translate-x-1/2 top-2.5 cursor-pointer z-50"
         @click="handleNextPage('customer')"
       >
         <div
-          class="w-24 h-24 bg-gradient-to-br from-[#192b388a] to-[#3819198a] rounded-full shadow-lg flex items-center justify-center border-4 overflow-hidden"
+          class="relative w-24 h-24 rounded-full flex items-center justify-center overflow-hidden"
         >
-          <div class="w-[%] h-[%] rounded-full overflow-hidden">
-            <img
-              src="../assets/Loghi/elite bistrot logo.jpg"
-              alt="logo elite bistrot"
-              srcset=""
-            />
+          <!-- bordo metà superiore viola, metà inferiore nero -->
+          <div
+            class="absolute inset-0 rounded-full"
+            style="
+              padding: 4px;
+              background: conic-gradient(
+                from -90deg,
+                #a300ff 0deg 180deg,
+                #000000 180deg 360deg
+              );
+            "
+          >
+            <!-- cerchio interno con sfondo blur -->
+            <div
+              class="w-full h-full rounded-full bg-gradient-to-br from-[#1a1a1acc] to-[#00000080] backdrop-blur-sm flex items-center justify-center overflow-hidden"
+            >
+              <img
+                src="../assets/Loghi/elite bistrot logo.jpg"
+                alt="Elite Bistrot Logo"
+                class="w-full h-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </div>

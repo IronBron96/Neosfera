@@ -1,177 +1,176 @@
 <template>
   <div class="flex flex-col">
     <!-- Contenuto principale -->
-    <main class="max-w-md mx-auto px-6 pt-12 flex flex-col gap-4">
-      <!-- Promozioni o Info -->
-      <div :bordered="false" class="bg-light p-2 rounded-xl">
-        <div class="flex items-center gap-3">
+    <main class="max-w-md mx-auto px-6 pt-12 flex flex-col gap-3">
+      <!-- PROMOZIONE / INFO -->
+      <div
+        class="bg-white shadow-[6px_6px_0_0_#000] rounded-2xl border border-black p-4 text-black"
+      >
+        <div class="flex items-center gap-4">
+          <!-- ICONA PROMO -->
           <div
-            class="w-12 h-12 bg-gradient-to-br from-[#ccc617] to-[#c44222c9] rounded-xl flex items-center justify-center shadow-lg"
+            class="w-16 h-16 bg-gradient-to-br from-[#FFEE00] to-[#FF9900] border-[4px] border-black rounded-xl flex items-center justify-center shadow-[6px_6px_0_0_#000]"
           >
-            <n-icon :size="24" color="white">
+            <n-icon :size="28" color="black">
+              <!-- SVG PROMO -->
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
                 fill="none"
+                viewBox="0 0 24 24"
                 stroke="currentColor"
-                stroke-width="2"
               >
                 <path
                   d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"
                 ></path>
-                <line x1="7" y1="7" x2="7.01" y2="7"></line>
               </svg>
             </n-icon>
           </div>
-          <div class="flex-1">
-            <h3 class="font-bold text-xl text-grayish">Offerta del Giorno</h3>
-            <p class="text-sm text-grayish">Caffè + Cornetto a €2.50</p>
+
+          <!-- TESTO -->
+          <div>
+            <h3 class="font-extrabold text-xl text-black">
+              Offerta del Giorno
+            </h3>
+            <p class="text-base font-semibold text-black">
+              Caffè + Cornetto a €2.50
+            </p>
           </div>
         </div>
       </div>
 
-      <div class="flex flex-col">
-        <!-- Sezione Chat Globale -->
-        <div class="mb-6 relative">
-          <div class="bg-lightNavi rounded-2xl shadow-lg p-4 mb-3 h-60">
-            <div class="flex items-center gap-2 mb-3">
-              <n-icon :size="20" color="#2D3142">
+      <!-- CHAT GLOBALE PREVIEW -->
+      <div class="relative mb-6">
+        <div
+          class="bg-white border-[3px] border-black rounded-2xl shadow-[6px_6px_0_0_#000] p-4 h-60"
+        >
+          <!-- Header Chat -->
+          <div class="flex items-center gap-3 mb-3">
+            <div
+              class="w-10 h-10 border-[3px] border-black rounded-xl bg-gradient-to-br from-[#00FF7B] to-[#00C4FF] flex items-center justify-center shadow-[4px_4px_0_0_#000]"
+            >
+              <n-icon :size="20" color="black">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
                 >
                   <path
                     d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
                   ></path>
                 </svg>
               </n-icon>
-              <h3 class="font-semibold text-light">Chat Globale</h3>
             </div>
 
-            <div class="space-y-2 h-32 mb-3">
-              <div
-                v-for="msg in chatPreview"
-                :key="msg.id"
-                class="flex items-start gap-2"
-              >
-                <n-avatar :size="24" round :src="msg.avatar" />
-                <div class="flex-1">
-                  <div class="flex items-baseline gap-2">
-                    <span class="text-sm font-semibold text-beige">{{
-                      msg.username
-                    }}</span>
-                    <span class="text-xs text-navi">{{ msg.time }}</span>
-                  </div>
-                  <p class="text-sm text-gray-200">{{ msg.message }}</p>
-                </div>
-              </div>
-            </div>
+            <h3 class="font-extrabold text-xl text-black">Chat Globale</h3>
           </div>
-          <div class="absolute -bottom-1 left-0 right-0 m-auto w-max">
-            <n-button
-              type="success"
-              size="large"
-              round
-              @click="handleNextPage('chat')"
+
+          <!-- Messaggi Preview -->
+          <div class="space-y-3 h-32 overflow-hidden">
+            <div
+              v-for="msg in chatPreview"
+              :key="msg.id"
+              class="flex items-start gap-2"
             >
-              <template #icon>
-                <n-icon>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  >
-                    <path
-                      d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-                    ></path>
-                  </svg>
-                </n-icon>
-              </template>
-              Entra in Chat
-            </n-button>
+              <n-avatar :size="26" round :src="msg.avatar" />
+
+              <div class="flex-1">
+                <div class="flex items-baseline gap-2">
+                  <span class="text-sm font-bold text-black">
+                    {{ msg.username }}
+                  </span>
+                  <span class="text-xs text-gray-700">
+                    {{ msg.time }}
+                  </span>
+                </div>
+                <p class="text-sm text-black">
+                  {{ msg.message }}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Sezione Azioni Principali -->
-        <div class="grid grid-cols-2 gap-4">
-          <!-- Gioca -->
-          <n-card
-            :bordered="false"
-            class="cursor-pointer rounded-xl hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-beige h-[150px]"
-            @click="handleNextPage('games')"
+        <!-- Pulsante "Entra in Chat" -->
+        <div class="absolute -bottom-3 left-0 right-0 flex justify-center">
+          <n-button
+            class="!bg-black !text-white !font-bold !rounded-full !border-[3px] !border-black shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000] active:shadow-[2px_2px_0_0_#000]"
+            size="large"
+            @click="handleNextPage('chat')"
           >
-            <div class="flex flex-col items-center">
-              <div
-                class="w-16 h-16 bg-gradient-to-br from-[#103d6a] to-[#581452] rounded-2xl flex items-center justify-center shadow-lg"
-              >
-                <n-icon :size="32" color="white">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  >
-                    <!-- Cerchio esterno -->
-                    <circle cx="12" cy="12" r="10" />
-                    <!-- Linee divisorie -->
-                    <line x1="12" y1="2" x2="12" y2="12" />
-                    <line x1="12" y1="12" x2="21" y2="12" />
-                    <line x1="12" y1="12" x2="3" y2="12" />
-                    <line x1="12" y1="12" x2="17" y2="7" />
-                    <line x1="12" y1="12" x2="7" y2="17" />
-                    <!-- Indicatore / freccia in alto -->
-                    <polygon points="11,1 13,1 12,4" fill="currentColor" />
-                    <!-- Cerchio centrale -->
-                    <circle cx="12" cy="12" r="2" />
-                  </svg>
-                </n-icon>
-              </div>
-              <div class="text-center">
-                <h3 class="font-extrabold text-[35px] text-[#68275b]">Gioca</h3>
-              </div>
-            </div>
-          </n-card>
-
-          <!-- Menu -->
-          <n-card
-            :bordered="false"
-            class="cursor-pointer rounded-xl hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-beige h-[150px]"
-            @click="handleNextPage('menu')"
-          >
-            <div class="flex flex-col items-center relative h-[130px]">
-              <div
-                class="w-16 h-16 bg-gradient-to-br from-[#103d6a] to-[#581414] rounded-2xl flex items-center justify-center shadow-lg"
-              >
-                <n-icon :size="32" color="white">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  >
-                    <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path>
-                    <path d="M7 2v20"></path>
-                    <path
-                      d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"
-                    ></path>
-                  </svg>
-                </n-icon>
-              </div>
-              <div class="text-center">
-                <span class="font-extrabold text-[35px] text-[#68272b]"
-                  >Menu</span
-                >
-              </div>
-            </div>
-          </n-card>
+            Entra in Chat
+          </n-button>
         </div>
+      </div>
+
+      <!-- CARDS AZIONI PRINCIPALI -->
+      <div class="grid grid-cols-2 gap-4">
+        <!-- GIOCA -->
+        <n-card
+          :bordered="false"
+          class="cursor-pointer rounded-2xl bg-[#EFFF00] h-[150px] border-[4px] border-black shadow-[6px_6px_0_0_#000] transition-all duration-200 hover:-translate-y-1 hover:shadow-[12px_12px_0_rgba(0,0,0,1)] active:shadow-[4px_4px_0_rgba(0,0,0,1)]"
+          @click="handleNextPage('games')"
+        >
+          <div class="flex flex-col items-center">
+            <div
+              class="w-20 h-20 bg-gradient-to-br from-[#FFEE00] to-[#FF9900] border-[4px] border-black rounded-2xl flex items-center justify-center shadow-[6px_6px_0_0_#000] transition-all duration-200 hover:-translate-y-1 hover:shadow-[10px_10px_0_0_#000] active:shadow-[4px_4px_0_0_#000]"
+            >
+              <n-icon :size="36" color="white">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <!-- Contorno tipo controller -->
+                  <rect x="3" y="8" width="18" height="10" rx="3" ry="3" />
+                  <!-- Pulsanti -->
+                  <circle cx="9" cy="13" r="1.5" />
+                  <circle cx="15" cy="13" r="1.5" />
+                  <!-- D-pad -->
+                  <line x1="9" y1="10" x2="9" y2="11.7" />
+                  <line x1="7.3" y1="11.7" x2="10.7" y2="11.7" />
+                </svg>
+              </n-icon>
+            </div>
+
+            <h3 class="font-extrabold text-[28px] text-black">Gioca</h3>
+          </div>
+        </n-card>
+
+        <!-- MENU -->
+        <n-card
+          :bordered="false"
+          class="cursor-pointer rounded-xl bg-[#00E85F] h-[150px] border-[3px] border-black shadow-[6px_6px_0_0_#000] transition-all duration-200 hover:-translate-y-1 hover:shadow-[10px_10px_0_0_#000] active:translate-y-0 active:shadow-[4px_4px_0_0_#000]"
+          @click="handleNextPage('menu')"
+        >
+          <div class="flex flex-col items-center">
+            <div
+              class="w-20 h-20 bg-gradient-to-br from-[#00FF7B] to-[#00C4FF] border-[4px] border-black rounded-2xl flex items-center justify-center shadow-[6px_6px_0_0_#000] transition-all duration-200 hover:-translate-y-1 hover:shadow-[10px_10px_0_0_#000] active:shadow-[4px_4px_0_0_#000]"
+            >
+              <n-icon :size="36" color="white">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <!-- Forchetta -->
+                  <path d="M6 2v6M10 2v6M8 2v20" />
+                  <!-- Coltello -->
+                  <path d="M17 2c0 5-2 8-2 12a3 3 0 0 0 3 3h1V2z" />
+                </svg>
+              </n-icon>
+            </div>
+
+            <span class="font-extrabold text-[28px] text-black"> Menu </span>
+          </div>
+        </n-card>
       </div>
     </main>
   </div>

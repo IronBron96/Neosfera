@@ -7,14 +7,14 @@
   >
     <nav
       v-if="ready"
-      class="fixed bottom-2 left-1/2 -translate-x-1/2 w-[90%] max-w-md bg-[#1e1e1f]/90 backdrop-blur-md rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.4)] border border-[#ffffff1a] z-50"
+      class="fixed bottom-3 left-1/2 -translate-x-1/2 w-[90%] max-w-md bg-[#A300FF] border-[4px] border-black rounded-2xl shadow-[6px_6px_0_0_#000]"
     >
       <div class="relative flex items-center gap-2 justify-around py-3 px-2">
         <!-- Menu -->
         <n-button
           :type="currentTab === 'menu' ? 'primary' : 'default'"
           @click="handleNextPage('menu')"
-          class="flex-1 flex justify-center"
+          class="border-[3px] border-black rounded-xl shadow-[3px_3px_0_rgba(0,0,0,1)] p-3 hover:-translate-y-1 hover:shadow-[5px_5px_0_rgba(0,0,0,1)] transition-all"
         >
           <n-icon :size="35">
             <svg
@@ -36,7 +36,7 @@
         <n-button
           :type="currentTab === '' ? 'primary' : 'default'"
           @click="handleNextPage('')"
-          class="flex-1 flex justify-center"
+          class="border-[3px] border-black rounded-xl shadow-[3px_3px_0_rgba(0,0,0,1)] p-3 hover:-translate-y-1 hover:shadow-[5px_5px_0_rgba(0,0,0,1)] transition-all"
         >
           <n-icon :size="30">
             <svg
@@ -56,7 +56,7 @@
         <n-button
           :type="currentTab === 'userProfile' ? 'primary' : 'default'"
           @click="handleNextPage('userProfile')"
-          class="flex-1 flex justify-center"
+          class="border-[3px] border-black rounded-xl shadow-[3px_3px_0_rgba(0,0,0,1)] p-3 hover:-translate-y-1 hover:shadow-[5px_5px_0_rgba(0,0,0,1)] transition-all"
         >
           <n-icon :size="40">
             <svg
@@ -76,7 +76,7 @@
         <n-button
           :type="currentTab === 'games' ? 'primary' : 'default'"
           @click="handleNextPage('games')"
-          class="flex-1 flex justify-center"
+          class="border-[3px] border-black rounded-xl shadow-[3px_3px_0_rgba(0,0,0,1)] p-3 hover:-translate-y-1 hover:shadow-[5px_5px_0_rgba(0,0,0,1)] transition-all"
         >
           <n-icon :size="24">
             <svg

@@ -1,6 +1,8 @@
 <template>
   <n-config-provider :theme-overrides="themeOverrides" :theme="null">
-    <div class="min-h-screen bg-dark">
+    <div
+      class="min-h-screen bg-[#5c06af] bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.3)_0%,rgba(0,0,0,0)_60%)]"
+    >
       <HeaderSection />
       <main>
         <n-message-provider>
@@ -40,10 +42,6 @@ const themeOverrides = {
     colorHoverSuccess: "#3F4451",
     colorPressedSuccess: "#1C1E26",
     colorFocusSuccess: "#2D3142",
-    borderSuccess: "1px solid #BFC0C0",
-    borderPressedSuccess: "1px solid #888A8A",
-    borderHoverSuccess: "1px solid #5C6066",
-    borderFocusSuccess: "1px solid #2D3142",
   },
 };
 </script>
