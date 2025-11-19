@@ -25,23 +25,24 @@ import FooterSection from "../components/FooterSection.vue";
 
 const themeOverrides = {
   common: {
-    primaryColor: "#EF8354",
-    primaryColorHover: "#F0753F",
-    primaryColorPressed: "#C64B1E",
-    primaryColorSuppl: "#EF8354",
+    primaryColor: "#00e85f",
+    primaryColorHover: "#00e85f",
+    primaryColorPressed: "#00e85f",
+    primaryColorSuppl: "#00e85f",
     baseColor: "#FFFCF2",
     textColorBase: "#252422",
   },
   Button: {
-    textColorPrimary: "#FFFCF2",
-    colorPrimary: "#EF8354",
-    colorHoverPrimary: "#F0753F",
-    colorPressedPrimary: "#C64B1E",
-    colorFocusPrimary: "#EF8354",
-    colorSuccess: "#2D3142",
-    colorHoverSuccess: "#3F4451",
-    colorPressedSuccess: "#1C1E26",
-    colorFocusSuccess: "#2D3142",
+    textColorPrimary: "#000",
+    textColor: "#000",
+    colorPrimary: "#00e85f",
+    colorHoverPrimary: "#00e85f",
+    colorPressedPrimary: "#00e85f",
+    colorFocusPrimary: "#00e85f",
+    colorSuccess: "#efff00",
+    colorHoverSuccess: "#efff00",
+    colorPressedSuccess: "#efff00",
+    colorFocusSuccess: "#efff00",
   },
 };
 </script>
@@ -54,9 +55,9 @@ main {
 }
 
 :root {
-  --primary-color: #eb5e28 !important;
-  --primary-color-hover: #f0753f !important;
-  --primary-color-pressed: #c64b1e !important;
+  --primary-color: #00e85f !important;
+  --primary-color-hover: #00e85f !important;
+  --primary-color-pressed: #00e85f !important;
 }
 
 .n-button--primary {

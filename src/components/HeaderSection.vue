@@ -1,7 +1,7 @@
 <template>
   <!-- Header con avatar utente -->
   <header
-    class="bg-[#a300ff] border-b-[4px] border-black shadow-[0_6px_0_rgba(0,0,0,1)] sticky top-0 z-50"
+    class="bg-[#a300ff] border-b-[4px] rounded-b-2xl border-black shadow-[0_6px_0_rgba(0,0,0,1)] sticky top-0 z-50"
   >
     <div class="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
       <div class="flex gap-4 w-1/5">

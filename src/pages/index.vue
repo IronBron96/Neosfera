@@ -114,24 +114,26 @@
             <div
               class="w-20 h-20 bg-gradient-to-br from-[#FFEE00] to-[#FF9900] border-[4px] border-black rounded-2xl flex items-center justify-center shadow-[6px_6px_0_0_#000] transition-all duration-200 hover:-translate-y-1 hover:shadow-[10px_10px_0_0_#000] active:shadow-[4px_4px_0_0_#000]"
             >
-              <n-icon :size="36" color="white">
+              <n-icon :size="40" color="black">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="3"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  stroke-width="2"
+                  aria-hidden="true"
                 >
-                  <!-- Contorno tipo controller -->
-                  <rect x="3" y="8" width="18" height="10" rx="3" ry="3" />
-                  <!-- Pulsanti -->
-                  <circle cx="9" cy="13" r="1.5" />
-                  <circle cx="15" cy="13" r="1.5" />
-                  <!-- D-pad -->
-                  <line x1="9" y1="10" x2="9" y2="11.7" />
-                  <line x1="7.3" y1="11.7" x2="10.7" y2="11.7" />
+                  <circle cx="12" cy="6" r="1.8"></circle>
+                  <path d="M12 8v6"></path>
+                  <rect
+                    x="6.5"
+                    y="15.5"
+                    width="11"
+                    height="2.5"
+                    rx="0.8"
+                  ></rect>
+                  <path d="M4 18.5h16" stroke-linecap="round"></path>
+                  <path d="M9 15.5c1-1.5 3-1.5 4 0"></path>
                 </svg>
               </n-icon>
             </div>
@@ -150,7 +152,7 @@
             <div
               class="w-20 h-20 bg-gradient-to-br from-[#00FF7B] to-[#00C4FF] border-[4px] border-black rounded-2xl flex items-center justify-center shadow-[6px_6px_0_0_#000] transition-all duration-200 hover:-translate-y-1 hover:shadow-[10px_10px_0_0_#000] active:shadow-[4px_4px_0_0_#000]"
             >
-              <n-icon :size="36" color="white">
+              <n-icon :size="36" color="black">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"

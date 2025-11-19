@@ -9,10 +9,10 @@ export default {
         5000: "5000ms",
       },
       colors: {
-        primary: "#EF8354", // arancione acceso
+        primary: "#00e85f", // verde acceso
         dark: "#252422", // nero/marrone scuro
         lightDark: "#27272a", // grigio scuro
-        navi: "#2D3142", // grigio profondo
+        yellow: "#efff00", // grigio profondo
         lightNavi: "#4F5D75",
         beige: "#CCC5B9", // beige neutro
         light: "#FFFFFF", // avorio chiaro

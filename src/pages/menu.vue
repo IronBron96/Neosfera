@@ -1,13 +1,13 @@
 <template>
   <div class="min-h-screen flex flex-col">
     <!-- Contenuto principale -->
-    <main class="max-w-md mx-auto flex-1 px-4 pt-16 pb-28">
-      <div class="space-y-6">
-        <span class="text-3xl font-bold text-light mb-6">Il nostro menù</span>
+    <main class="max-w-md mx-auto flex-1 px-4 pt-12 pb-28">
+      <div class="space-y-2 text-ceter">
+        <span class="text-4xl font-extrabold text-primary">Il nostro menù</span>
         <!-- Categorie -->
         <div v-for="cat in menu" :key="cat.id" class="space-y-3">
           <div class="flex items-center gap-2">
-            <n-icon color="#EF8354" :size="22">
+            <n-icon color="black" :size="22">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -18,7 +18,9 @@
                 <path d="M4 6h16M4 10h16M10 14h10M4 18h10" />
               </svg>
             </n-icon>
-            <h3 class="text-beige font-semibold text-lg">{{ cat.name }}</h3>
+            <h3 class="font-extrabold text-lg text-[#efff00]">
+              {{ cat.name }}
+            </h3>
           </div>
 
           <!-- Prodotti -->
@@ -27,7 +29,7 @@
               v-for="item in cat.items"
               :key="item.id"
               :bordered="false"
-              class="cursor-pointer hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+              class="cursor-pointer hover:shadow-lg transition-all duration-300 hover:-translate-y-1 shadow-[6px_6px_0_0_#000] border-[3px] border-black h-[180px]"
               @click="addToCart(item)"
             >
               <div class="flex flex-col items-center text-center gap-2">
@@ -51,11 +53,11 @@
 
     <!-- Carrello -->
     <div
-      class="sticky bottom-20 bg-lightDark border-t border-black/10 rounded-2xl mx-auto"
+      class="sticky bottom-20 bg-black border-t border-black/10 rounded-2xl mx-auto"
     >
       <div class="mx-auto px-4 py-3 flex items-center justify-between gap-8">
         <div>
-          <p class="text-gray-300 text-sm">
+          <p class="text-[#efff00] text-sm">
             Totale:
             <span class="font-semibold text-white"
               >€ {{ total.toFixed(2) }}</span
@@ -63,7 +65,7 @@
           </p>
         </div>
         <n-button
-          type="primary"
+          type="success"
           round
           size="large"
           @click="checkout"

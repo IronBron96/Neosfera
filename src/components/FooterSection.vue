@@ -7,16 +7,16 @@
   >
     <nav
       v-if="ready"
-      class="fixed bottom-3 left-1/2 -translate-x-1/2 w-[90%] max-w-md bg-[#A300FF] border-[4px] border-black rounded-2xl shadow-[6px_6px_0_0_#000]"
+      class="fixed bottom-3 left-1/2 -translate-x-1/2 w-[90%] max-w-md bg-[#A300FF] border-[4px] border-black rounded-2xl shadow-[0_6px_0_rgba(0,0,0,1)]"
     >
       <div class="relative flex items-center gap-2 justify-around py-3 px-2">
         <!-- Menu -->
         <n-button
           :type="currentTab === 'menu' ? 'primary' : 'default'"
           @click="handleNextPage('menu')"
-          class="border-[3px] border-black rounded-xl shadow-[3px_3px_0_rgba(0,0,0,1)] p-3 hover:-translate-y-1 hover:shadow-[5px_5px_0_rgba(0,0,0,1)] transition-all"
+          class="w-16 border-[3px] bg-[#5706a5] border-black rounded-xl shadow-[3px_3px_0_rgba(0,0,0,1)] p-3 hover:-translate-y-1 hover:shadow-[5px_5px_0_rgba(0,0,0,1)] transition-all"
         >
-          <n-icon :size="35">
+          <n-icon :size="30">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -36,7 +36,7 @@
         <n-button
           :type="currentTab === '' ? 'primary' : 'default'"
           @click="handleNextPage('')"
-          class="border-[3px] border-black rounded-xl shadow-[3px_3px_0_rgba(0,0,0,1)] p-3 hover:-translate-y-1 hover:shadow-[5px_5px_0_rgba(0,0,0,1)] transition-all"
+          class="w-16 border-[3px] bg-[#5706a5] border-black rounded-xl shadow-[3px_3px_0_rgba(0,0,0,1)] p-3 hover:-translate-y-1 hover:shadow-[5px_5px_0_rgba(0,0,0,1)] transition-all"
         >
           <n-icon :size="30">
             <svg
@@ -56,9 +56,9 @@
         <n-button
           :type="currentTab === 'userProfile' ? 'primary' : 'default'"
           @click="handleNextPage('userProfile')"
-          class="border-[3px] border-black rounded-xl shadow-[3px_3px_0_rgba(0,0,0,1)] p-3 hover:-translate-y-1 hover:shadow-[5px_5px_0_rgba(0,0,0,1)] transition-all"
+          class="w-16 bg-[#5706a5] text-black rounded-xl shadow-[3px_3px_0_rgba(0,0,0,1)] p-3 hover:-translate-y-1 hover:shadow-[5px_5px_0_rgba(0,0,0,1)] transition-all"
         >
-          <n-icon :size="40">
+          <n-icon :size="34">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -72,24 +72,27 @@
           </n-icon>
         </n-button>
 
-        <!-- Impostazioni -->
+        <!-- Giochi -->
         <n-button
           :type="currentTab === 'games' ? 'primary' : 'default'"
           @click="handleNextPage('games')"
-          class="border-[3px] border-black rounded-xl shadow-[3px_3px_0_rgba(0,0,0,1)] p-3 hover:-translate-y-1 hover:shadow-[5px_5px_0_rgba(0,0,0,1)] transition-all"
+          class="w-16 border-[3px] bg-[#5706a5] border-black rounded-xl shadow-[3px_3px_0_rgba(0,0,0,1)] p-3 hover:-translate-y-1 hover:shadow-[5px_5px_0_rgba(0,0,0,1)] transition-all"
         >
-          <n-icon :size="24">
+          <n-icon :size="30">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               stroke-width="2"
+              aria-hidden="true"
             >
-              <circle cx="12" cy="12" r="3"></circle>
-              <path
-                d="M12 1v6m0 6v6m5.2-14.8L13.5 7.9m-3 3-3.7 3.7m8.8 0L12 11m0 0L8.3 7.3M23 12h-6m-6 0H1"
-              />
+              <rect x="3.5" y="3.5" width="17" height="17" rx="2.2"></rect>
+              <circle cx="8.6" cy="8.6" r="0.9"></circle>
+              <circle cx="15.4" cy="8.6" r="0.9"></circle>
+              <circle cx="12" cy="12" r="0.9"></circle>
+              <circle cx="8.6" cy="15.4" r="0.9"></circle>
+              <circle cx="15.4" cy="15.4" r="0.9"></circle>
             </svg>
           </n-icon>
         </n-button>
