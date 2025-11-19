@@ -1,13 +1,19 @@
 <template>
   <div class="min-h-screen flex flex-col">
     <!-- Contenuto principale -->
-    <main class="max-w-md mx-auto flex-1 px-4 pt-12 pb-28">
+    <main class="max-w-md mx-auto flex-1 px-4 pt-12 pb-28 text-center">
       <div class="space-y-2 text-ceter">
-        <span class="text-4xl font-extrabold text-primary">Il nostro menù</span>
+        <h1 class="text-2xl font-extrabold text-black leading-tight">
+          <span
+            class="inline-block px-4 py-1 bg-[#EFFF00] border border-black rounded-full shadow-[4px_4px_0_0_#000]"
+          >
+            Il nostro menù
+          </span>
+        </h1>
         <!-- Categorie -->
         <div v-for="cat in menu" :key="cat.id" class="space-y-3">
           <div class="flex items-center gap-2">
-            <n-icon color="black" :size="22">
+            <n-icon color="#00e85f" :size="22">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -32,17 +38,11 @@
               class="cursor-pointer hover:shadow-lg transition-all duration-300 hover:-translate-y-1 shadow-[6px_6px_0_0_#000] border-[3px] border-black h-[180px]"
               @click="addToCart(item)"
             >
-              <div class="flex flex-col items-center text-center gap-2">
-                <img
-                  :src="item.image"
-                  alt=""
-                  class="w-20 h-20 rounded-xl object-cover"
-                />
-                <div>
+              <div class="flex flex-col items-center text-center gap-2 h-full">
+                <img :src="item.image" alt="" class="w-20 h-20 rounded-xl object-cover" />
+                <div class="flex flex-col justify-between h-full">
                   <h4 class="font-bold text-navi text-sm">{{ item.name }}</h4>
-                  <p class="text-xs text-gray-500">
-                    € {{ item.price.toFixed(2) }}
-                  </p>
+                  <p class="text-xs text-gray-500">€ {{ item.price.toFixed(2) }}</p>
                 </div>
               </div>
             </n-card>
@@ -52,25 +52,15 @@
     </main>
 
     <!-- Carrello -->
-    <div
-      class="sticky bottom-20 bg-black border-t border-black/10 rounded-2xl mx-auto"
-    >
+    <div class="sticky bottom-20 bg-black border-t border-black/10 rounded-2xl mx-auto">
       <div class="mx-auto px-4 py-3 flex items-center justify-between gap-8">
         <div>
           <p class="text-[#efff00] text-sm">
             Totale:
-            <span class="font-semibold text-white"
-              >€ {{ total.toFixed(2) }}</span
-            >
+            <span class="font-semibold text-white">€ {{ total.toFixed(2) }}</span>
           </p>
         </div>
-        <n-button
-          type="success"
-          round
-          size="large"
-          @click="checkout"
-          :disabled="cart.length === 0"
-        >
+        <n-button type="primary" round size="large" @click="checkout" :disabled="cart.length === 0">
           <template #icon>
             <n-icon>
               <svg
@@ -96,69 +86,67 @@
 </template>
 
 <script setup>
-import { useRouter } from "vue-router";
-import { useMessage } from "naive-ui";
-import directus from "@/lib/directus";
-import { readItems } from "@directus/sdk";
+  import {useRouter} from 'vue-router'
+  import {useMessage} from 'naive-ui'
+  import directus from '@/lib/directus'
+  import {readItems} from '@directus/sdk'
 
-const router = useRouter();
-const message = useMessage();
+  const router = useRouter()
+  const message = useMessage()
 
-const menu = ref([]);
+  const menu = ref([])
 
-const cart = ref([]);
+  const cart = ref([])
 
-const total = computed(() =>
-  cart.value.reduce((sum, item) => sum + item.price, 0)
-);
+  const total = computed(() => cart.value.reduce((sum, item) => sum + item.price, 0))
 
-function addToCart(item) {
-  cart.value.push(item);
-  message.success(`${item.name} aggiunto al carrello!`);
-}
-
-function checkout() {
-  if (cart.value.length === 0) return;
-  message.success(`Ordine confermato! Totale: €${total.value.toFixed(2)}`);
-  cart.value = [];
-}
-
-function goBack() {
-  router.back(); // torna alla dashboard
-}
-
-onMounted(async () => {
-  try {
-    const categories = await directus.request(
-      readItems("ns_categories", {
-        fields: ["id", "name", "sort", "ns_products.ns_products_id.*"],
-        sort: ["sort"],
-      })
-    );
-
-    console.log(categories);
-
-    // Mappiamo i dati nella struttura desiderata
-    menu.value = categories.map((cat) => ({
-      id: cat.id,
-      name: cat.name,
-      items: cat.ns_products.map((p) => ({
-        id: p.ns_products_id.id,
-        name: p.ns_products_id.name,
-        price: parseFloat(p.ns_products_id.price),
-        description: p.ns_products_id.description,
-        image: p.ns_products_id.img_url || "https://via.placeholder.com/200", // placeholder se mancante
-      })),
-    }));
-  } catch (error) {
-    console.error("Errore nel caricamento del menù:", error);
+  function addToCart(item) {
+    cart.value.push(item)
+    message.success(`${item.name} aggiunto al carrello!`)
   }
-});
+
+  function checkout() {
+    if (cart.value.length === 0) return
+    message.success(`Ordine confermato! Totale: €${total.value.toFixed(2)}`)
+    cart.value = []
+  }
+
+  function goBack() {
+    router.back() // torna alla dashboard
+  }
+
+  onMounted(async () => {
+    try {
+      const categories = await directus.request(
+        readItems('ns_categories', {
+          fields: ['id', 'name', 'sort', 'ns_products.ns_products_id.*'],
+          sort: ['sort'],
+        })
+      )
+
+      console.log(categories)
+
+      // Mappiamo i dati nella struttura desiderata
+      menu.value = categories.map(cat => ({
+        id: cat.id,
+        name: cat.name,
+        items: cat.ns_products.map(p => ({
+          id: p.ns_products_id.id,
+          name: p.ns_products_id.name,
+          price: parseFloat(p.ns_products_id.price),
+          description: p.ns_products_id.description,
+          image: p.ns_products_id.img_url || 'https://via.placeholder.com/200', // placeholder se mancante
+        })),
+      }))
+    } catch (error) {
+      console.error('Errore nel caricamento del menù:', error)
+    }
+  })
 </script>
 
 <style scoped>
-.n-card {
-  border-radius: 1rem;
-  background: #fff;
-}
+  .n-card {
+    border-radius: 1rem;
+    background: #fff;
+  }
 </style>

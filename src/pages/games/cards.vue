@@ -22,14 +22,14 @@
         >
           <div
             class="absolute inset-0 transition-transform duration-300 [transform-style:preserve-3d]"
-            :class="{ '[transform:rotateY(180deg)]': card.flipped }"
+            :class="{'[transform:rotateY(180deg)]': card.flipped}"
           >
             <!-- Fronte -->
             <div
               v-if="card.flipped"
               class="absolute inset-0 bg-white border-2 border-emerald-400 rounded-xl flex items-center justify-center text-emerald-600 font-bold text-xl"
             >
-              {{ card.isWinner ? "⭐" : "❌" }}
+              {{ card.isWinner ? '⭐' : '❌' }}
             </div>
 
             <!-- Retro -->
@@ -64,101 +64,101 @@
 </template>
 
 <script setup>
-import { ref, nextTick } from "vue";
+  import {ref, nextTick} from 'vue'
 
-const credits = ref(3);
-const cards = ref([]);
-const positions = ref([]);
-const gameOver = ref(false);
-const resultText = ref("");
-let canSelect = false;
+  const credits = ref(3)
+  const cards = ref([])
+  const positions = ref([])
+  const gameOver = ref(false)
+  const resultText = ref('')
+  let canSelect = false
 
-const gridPositions = [
-  { x: 0, y: 0 },
-  { x: 90, y: 0 },
-  { x: 180, y: 0 },
-  { x: 0, y: 130 },
-  { x: 90, y: 130 },
-  { x: 180, y: 130 },
-  { x: 0, y: 260 },
-  { x: 90, y: 260 },
-  { x: 180, y: 260 },
-];
+  const gridPositions = [
+    {x: 0, y: 0},
+    {x: 90, y: 0},
+    {x: 180, y: 0},
+    {x: 0, y: 130},
+    {x: 90, y: 130},
+    {x: 180, y: 130},
+    {x: 0, y: 260},
+    {x: 90, y: 260},
+    {x: 180, y: 260},
+  ]
 
-function startGame() {
-  if (credits.value <= 0) return;
+  function startGame() {
+    if (credits.value <= 0) return
 
-  gameOver.value = false;
-  resultText.value = "";
-  canSelect = false;
+    gameOver.value = false
+    resultText.value = ''
+    canSelect = false
 
-  // Carta “guida”: scegliamo una carta a caso per mostrare la stella
-  const guideIndex = Math.floor(Math.random() * 9);
+    // Carta “guida”: scegliamo una carta a caso per mostrare la stella
+    const guideIndex = Math.floor(Math.random() * 9)
 
-  cards.value = Array.from({ length: 9 }, (_, i) => ({
-    id: i + "-" + Math.random(),
-    flipped: true, // tutte girate all’inizio
-    isWinner: i === guideIndex, // solo la carta guida mostra la stella iniziale
-  }));
+    cards.value = Array.from({length: 9}, (_, i) => ({
+      id: i + '-' + Math.random(),
+      flipped: true, // tutte girate all’inizio
+      isWinner: i === guideIndex, // solo la carta guida mostra la stella iniziale
+    }))
 
-  positions.value = [...gridPositions];
-
-  setTimeout(() => {
-    // Copriamo tutte le carte (stella iniziale scompare)
-    cards.value.forEach((c) => ((c.flipped = false), (c.isWinner = false)));
+    positions.value = [...gridPositions]
 
     setTimeout(() => {
-      animateShuffle(50, 30, () => {
-        canSelect = true;
-      });
-    }, 500);
-  }, 1000);
-}
+      // Copriamo tutte le carte (stella iniziale scompare)
+      cards.value.forEach(c => ((c.flipped = false), (c.isWinner = false)))
 
-// Shuffle veloce
-function animateShuffle(times, speed = 0, callback) {
-  if (times <= 0) return callback?.();
+      setTimeout(() => {
+        animateShuffle(50, 30, () => {
+          canSelect = true
+        })
+      }, 500)
+    }, 1000)
+  }
 
-  const i = Math.floor(Math.random() * 9);
-  let j = Math.floor(Math.random() * 9);
-  while (j === i) j = Math.floor(Math.random() * 9);
+  // Shuffle veloce
+  function animateShuffle(times, speed = 0, callback) {
+    if (times <= 0) return callback?.()
 
-  const temp = positions.value[i];
-  positions.value[i] = positions.value[j];
-  positions.value[j] = temp;
+    const i = Math.floor(Math.random() * 9)
+    let j = Math.floor(Math.random() * 9)
+    while (j === i) j = Math.floor(Math.random() * 9)
 
-  nextTick(() => {
+    const temp = positions.value[i]
+    positions.value[i] = positions.value[j]
+    positions.value[j] = temp
+
+    nextTick(() => {
+      setTimeout(() => {
+        animateShuffle(times - 1, speed, callback)
+      }, speed)
+    })
+  }
+
+  // Selezione della carta: 5% di possibilità di vittoria
+  function selectCard(index) {
+    if (!canSelect || gameOver.value) return
+    canSelect = false
+    credits.value--
+
+    cards.value[index].flipped = true // la carta si gira
+    const isWin = Math.random() < 0.05 // 5% di possibilità
+    if (isWin) cards.value[index].isWinner = true // mostra stella solo se vince
+
     setTimeout(() => {
-      animateShuffle(times - 1, speed, callback);
-    }, speed);
-  });
-}
+      resultText.value = isWin ? '🎉 Hai vinto un caffè!' : '💔 Ritenta!'
+      gameOver.value = true
 
-// Selezione della carta: 5% di possibilità di vittoria
-function selectCard(index) {
-  if (!canSelect || gameOver.value) return;
-  canSelect = false;
-  credits.value--;
+      if (isWin) credits.value++
+    }, 500)
+  }
 
-  cards.value[index].flipped = true; // la carta si gira
-  const isWin = Math.random() < 0.05; // 5% di possibilità
-  if (isWin) cards.value[index].isWinner = true; // mostra stella solo se vince
+  startGame()
 
-  setTimeout(() => {
-    resultText.value = isWin ? "🎉 Hai vinto un caffè!" : "💔 Ritenta!";
-    gameOver.value = true;
+  onMounted(() => {
+    document.body.style.overflow = 'hidden'
+  })
 
-    if (isWin) credits.value++;
-  }, 500);
-}
-
-startGame();
-
-onMounted(() => {
-  document.body.style.overflow = "hidden";
-});
-
-onUnmounted(() => {
-  document.body.style.overflow = "";
-});
+  onUnmounted(() => {
+    document.body.style.overflow = ''
+  })
 </script>

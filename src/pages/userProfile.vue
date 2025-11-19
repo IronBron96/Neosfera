@@ -1,47 +1,80 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex flex-col">
-    <main class="max-w-md mx-auto flex-1 px-4 pt-16">
-      <div class="flex flex-col items-center text-center gap-6">
-        <!-- Avatar -->
-        <n-image
-          :src="avatarDataUrl"
-          alt="Avatar utente"
-          width="140"
-          height="140"
-          class="rounded-full shadow-lg border border-gray-200 bg-white"
-          preview-disabled
-        />
-
-        <!-- Nickname -->
-        <div>
-          <h1 class="text-2xl font-bold text-gray-800 mb-2">
-            {{ nickname }}
+  <div class="h-full">
+    <main class="max-w-md mx-auto flex-1 px-4 pt-12 pb-24">
+      <!-- CARD PROFILO -->
+      <div
+        class="bg-white border border-black rounded-2xl shadow-[6px_6px_0_0_#000] px-6 py-6 text-center flex flex-col items-center gap-6"
+      >
+        <!-- Nickname + titolo -->
+        <div class="flex flex-col items-center gap-2">
+          <span class="text-xs font-semibold uppercase tracking-[0.15em] text-gray-500">
+            Il tuo profilo
+          </span>
+          <h1 class="text-4xl font-extrabold text-black leading-tight">
+            <span
+              class="inline-block px-4 py-1 bg-[#EFFF00] border border-black rounded-full shadow-[4px_4px_0_0_#000]"
+            >
+              {{ nickname }}
+            </span>
           </h1>
-          <p class="text-gray-600">Il tuo profilo personale</p>
         </div>
 
-        <!-- Pulsanti -->
-        <div class="flex gap-3">
+        <!-- Avatar -->
+        <div
+          class="relative mt-2 w-[150px] h-[150px] rounded-full border border-black bg-gradient-to-br from-[#EFFF00] to-[#00e85f] shadow-[6px_6px_0_0_#000] flex items-center justify-center"
+        >
+          <n-image
+            :src="avatarDataUrl"
+            alt="Avatar utente"
+            width="130"
+            height="130"
+            class="rounded-full border border-black bg-white"
+            preview-disabled
+          />
+        </div>
+
+        <!-- Pulsanti avatar -->
+        <div class="flex items-center justify-center gap-3">
           <!-- apre modale -->
-          <n-button type="warning" strong secondary round @click="showAvatarModal = true">
+          <n-button
+            type="primary"
+            strong
+            secondary
+            round
+            class="!bg-[#EFFF00] !text-black !font-bold !border-2 !border-black !rounded-full !px-3 !h-10 shrink-0 max-w-full shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000] active:shadow-[2px_2px_0_0_#000]"
+            @click="showAvatarModal = true"
+          >
             Cambia avatar
           </n-button>
 
           <!-- random -->
           <n-button
-            type="success"
-            secondary
-            round
+            type="primary"
+            quaternary
+            circle
+            class="!bg-black !text-white !font-bold !border-2 !border-black !h-10 shrink-0 shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000] active:shadow-[2px_2px_0_0_#000]"
             @click="generateRandomAvatar"
             title="Avatar casuale"
           >
             <template #icon>🎲</template>
+            Random
           </n-button>
         </div>
 
-        <n-button type="primary" strong secondary round @click="changeNickname">
-          Cambia nickname
-        </n-button>
+        <!-- Pulsante nickname -->
+        <div class="mt-2 w-full">
+          <n-button
+            type="primary"
+            strong
+            secondary
+            round
+            block
+            class="!bg-[#00e85f] !text-black !font-bold !rounded-full !h-11 shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000] active:shadow-[2px_2px_0_0_#000]"
+            @click="changeNickname"
+          >
+            Cambia nickname
+          </n-button>
+        </div>
       </div>
     </main>
 
@@ -54,29 +87,38 @@
         size="large"
         role="dialog"
         aria-modal="true"
+        class="border border-black rounded-2xl shadow-[6px_6px_0_0_#000]"
       >
-        <div class="max-h-72 overflow-y-auto grid grid-cols-3 gap-4">
+        <div class="max-h-72 overflow-y-auto grid grid-cols-3 gap-4 pt-2 pb-1">
           <button
             v-for="seed in presetSeeds"
             :key="seed"
             type="button"
-            class="flex flex-col items-center gap-2 p-2 rounded hover:bg-gray-100 transition"
+            class="flex flex-col items-center gap-2 p-2 rounded-2xl border border-black bg-white shadow-[3px_3px_0_0_#000] hover:shadow-[5px_5px_0_0_#000] active:shadow-[2px_2px_0_0_#000] transition-shadow"
             @click="selectPresetAvatar(seed)"
           >
             <n-image
               :src="makeAvatarDataUrl(seed)"
-              width="90"
-              height="90"
-              class="rounded-full border bg-white"
+              width="80"
+              height="80"
+              class="rounded-full border border-black bg-white"
               preview-disabled
             />
-            <span class="text-xs text-gray-500 truncate max-w-[80px]">{{ seed }}</span>
+            <span class="text-xs text-gray-600 font-medium truncate max-w-[80px]">
+              {{ seed }}
+            </span>
           </button>
         </div>
 
         <template #footer>
           <div class="flex justify-end gap-2">
-            <n-button circle @click="showAvatarModal = false">Chiudi</n-button>
+            <n-button
+              circle
+              class="!border-2 !border-black !rounded-full shadow-[3px_3px_0_0_#000] hover:shadow-[4px_4px_0_0_#000] active:shadow-[2px_2px_0_0_#000]"
+              @click="showAvatarModal = false"
+            >
+              Chiudi
+            </n-button>
           </div>
         </template>
       </n-card>

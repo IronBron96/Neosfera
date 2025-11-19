@@ -28,18 +28,14 @@
 
           <!-- TESTO -->
           <div>
-            <h3 class="font-extrabold text-xl text-black">
-              Offerta del Giorno
-            </h3>
-            <p class="text-base font-semibold text-black">
-              Caffè + Cornetto a €2.50
-            </p>
+            <h3 class="font-extrabold text-xl text-black">Offerta del Giorno</h3>
+            <p class="text-base font-semibold text-black">Caffè + Cornetto a €2.50</p>
           </div>
         </div>
       </div>
 
       <!-- CHAT GLOBALE PREVIEW -->
-      <div class="relative mb-6">
+      <div class="relative mb-3">
         <div
           class="bg-white border-[3px] border-black rounded-2xl shadow-[6px_6px_0_0_#000] p-4 h-60"
         >
@@ -49,14 +45,8 @@
               class="w-10 h-10 border-[3px] border-black rounded-xl bg-gradient-to-br from-[#00FF7B] to-[#00C4FF] flex items-center justify-center shadow-[4px_4px_0_0_#000]"
             >
               <n-icon :size="20" color="black">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  stroke="currentColor"
-                >
-                  <path
-                    d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-                  ></path>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                 </svg>
               </n-icon>
             </div>
@@ -66,11 +56,7 @@
 
           <!-- Messaggi Preview -->
           <div class="space-y-3 h-32 overflow-hidden">
-            <div
-              v-for="msg in chatPreview"
-              :key="msg.id"
-              class="flex items-start gap-2"
-            >
+            <div v-for="msg in chatPreview" :key="msg.id" class="flex items-start gap-2">
               <n-avatar :size="26" round :src="msg.avatar" />
 
               <div class="flex-1">
@@ -125,13 +111,7 @@
                 >
                   <circle cx="12" cy="6" r="1.8"></circle>
                   <path d="M12 8v6"></path>
-                  <rect
-                    x="6.5"
-                    y="15.5"
-                    width="11"
-                    height="2.5"
-                    rx="0.8"
-                  ></rect>
+                  <rect x="6.5" y="15.5" width="11" height="2.5" rx="0.8"></rect>
                   <path d="M4 18.5h16" stroke-linecap="round"></path>
                   <path d="M9 15.5c1-1.5 3-1.5 4 0"></path>
                 </svg>
@@ -170,7 +150,7 @@
               </n-icon>
             </div>
 
-            <span class="font-extrabold text-[28px] text-black"> Menu </span>
+            <span class="font-extrabold text-[28px] text-black">Menu</span>
           </div>
         </n-card>
       </div>
@@ -179,39 +159,36 @@
 </template>
 
 <script setup>
-import { useRouter } from "vue-router";
-import { nextPage } from "../utils/globals.js";
+  import {useRouter} from 'vue-router'
+  import {nextPage} from '../utils/globals.js'
 
-const router = useRouter();
+  const router = useRouter()
 
-const chatPreview = ref([
-  {
-    id: 1,
-    username: "Marco",
-    avatar:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=50&h=50&fit=crop",
-    message: "Il caffè oggi è fantastico! ☕",
-    time: "10:30",
-  },
-  {
-    id: 2,
-    username: "Sofia",
-    avatar:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&h=50&fit=crop",
-    message: "Qualcuno sa se hanno ancora i croissant?",
-    time: "10:32",
-  },
-  {
-    id: 3,
-    username: "Luca",
-    avatar:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=50&h=50&fit=crop",
-    message: "Consiglio il tiramisù! 🍰",
-    time: "10:35",
-  },
-]);
+  const chatPreview = ref([
+    {
+      id: 1,
+      username: 'Marco',
+      avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=50&h=50&fit=crop',
+      message: 'Il caffè oggi è fantastico! ☕',
+      time: '10:30',
+    },
+    {
+      id: 2,
+      username: 'Sofia',
+      avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&h=50&fit=crop',
+      message: 'Qualcuno sa se hanno ancora i croissant?',
+      time: '10:32',
+    },
+    {
+      id: 3,
+      username: 'Luca',
+      avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=50&h=50&fit=crop',
+      message: 'Consiglio il tiramisù! 🍰',
+      time: '10:35',
+    },
+  ])
 
-function handleNextPage(page) {
-  nextPage(page, router);
-}
+  function handleNextPage(page) {
+    nextPage(page, router)
+  }
 </script>

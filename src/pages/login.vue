@@ -1,45 +1,64 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-neutral-900 text-neutral-100">
+  <div class="min-h-screen flex items-center justify-center bg-[#6d00c1] p-6">
+    <!-- CARD -->
     <div
-      class="w-full max-w-sm bg-neutral-800 rounded-xl shadow-lg p-8 flex flex-col items-center gap-6"
+      class="w-full max-w-sm bg-white border border-black rounded-2xl shadow-[6px_6px_0_0_#000] p-8 flex flex-col items-center gap-6"
     >
-      <h1 class="text-2xl font-semibold text-white tracking-wide">Accedi</h1>
+      <!-- TITOLO -->
+      <h1 class="text-3xl font-extrabold text-black tracking-wide">
+        <span
+          class="px-4 py-1 bg-[#00e85f] border border-black rounded-full shadow-[4px_4px_0_0_#000]"
+        >
+          Accedi
+        </span>
+      </h1>
 
-      <form @submit.prevent="handleLogin" class="w-full flex flex-col gap-4">
+      <!-- FORM -->
+      <form @submit.prevent="handleLogin" class="w-full flex flex-col gap-5">
+        <!-- EMAIL -->
         <div class="flex flex-col gap-1">
-          <label for="email" class="text-sm text-neutral-400">Email</label>
+          <label for="email" class="text-xs font-bold uppercase tracking-wide text-gray-600">
+            Email
+          </label>
+
           <input
             id="email"
             v-model="email"
             type="email"
             placeholder="nome@esempio.com"
-            class="px-3 py-2 rounded-lg bg-neutral-700 text-white outline-none focus:ring-2 focus:ring-indigo-500"
+            class="px-4 py-2 bg-white border border-black rounded-xl shadow-[3px_3px_0_0_#000] focus:shadow-[5px_5px_0_0_#000] outline-none transition-all"
             required
           />
         </div>
 
+        <!-- PASSWORD -->
         <div class="flex flex-col gap-1">
-          <label for="password" class="text-sm text-neutral-400">Password</label>
+          <label for="password" class="text-xs font-bold uppercase tracking-wide text-gray-600">
+            Password
+          </label>
+
           <input
             id="password"
             v-model="password"
             type="password"
             placeholder="••••••••"
-            class="px-3 py-2 rounded-lg bg-neutral-700 text-white outline-none focus:ring-2 focus:ring-indigo-500"
+            class="px-4 py-2 bg-white border border-black rounded-xl shadow-[3px_3px_0_0_#000] focus:shadow-[5px_5px_0_0_#000] outline-none transition-all"
             required
           />
         </div>
 
+        <!-- BOTTONE ENTRA -->
         <button
           type="submit"
           :disabled="loading"
-          class="mt-2 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 transition font-medium text-white disabled:opacity-50"
+          class="mt-2 w-full h-12 bg-black text-white font-bold rounded-full shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000] active:shadow-[2px_2px_0_0_#000] disabled:opacity-50 disabled:shadow-none transition-all"
         >
           {{ loading ? 'Accesso in corso...' : 'Entra' }}
         </button>
       </form>
 
-      <p v-if="error" class="text-red-400 text-sm text-center">
+      <!-- ERRORE -->
+      <p v-if="error" class="text-red-600 text-sm font-semibold text-center mt-2">
         {{ error }}
       </p>
     </div>
