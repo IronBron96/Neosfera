@@ -1,8 +1,10 @@
+// main.js
 import './style.css'
 import {createApp} from 'vue'
 import App from './App.vue'
 import {createRouter, createWebHistory} from 'vue-router'
 import generatedRoutes from 'virtual:generated-pages'
+import {updateLastActive} from './lib/auth' // importa questa funzione
 
 const routes = [
   ...generatedRoutes.map(route => {
@@ -19,18 +21,28 @@ const router = createRouter({
   routes,
 })
 
-// 👇 QUI la guardia
+const INACTIVITY_MAX = 60 * 60 * 1000 // 60 minuti
+
 router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('directus_token')
+  const lastActive = localStorage.getItem('last_active')
+  const now = Date.now()
 
-  // se non ho token e NON sto andando a /login → mandami a /login
+  if (token && lastActive && now - Number(lastActive) > INACTIVITY_MAX) {
+    // sessione vecchia → considera l’utente come sloggato
+    localStorage.removeItem('directus_token')
+  }
+
   if (!token && to.path !== '/login') {
     return next('/login')
   }
 
-  // se ho token e provo ad andare a /login → mandami alla home
   if (token && to.path === '/login') {
     return next('/')
+  }
+
+  if (token) {
+    updateLastActive()
   }
 
   return next()
