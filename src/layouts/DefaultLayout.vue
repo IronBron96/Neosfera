@@ -13,7 +13,7 @@
           </n-dialog-provider>
         </n-message-provider>
       </main>
-      <FooterSection />
+      <FooterSection v-if="route.path !== '/chat'" />
     </div>
   </n-config-provider>
 </template>
@@ -22,6 +22,9 @@
   import {NConfigProvider} from 'naive-ui'
   import HeaderSection from '../components/HeaderSection.vue'
   import FooterSection from '../components/FooterSection.vue'
+  import {useRoute} from 'vue-router'
+
+  const route = useRoute()
 
   const themeOverrides = {
     common: {

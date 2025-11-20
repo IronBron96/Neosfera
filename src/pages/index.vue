@@ -4,14 +4,14 @@
     <main class="max-w-md mx-auto px-6 pt-12 flex flex-col gap-3">
       <!-- PROMOZIONE / INFO -->
       <div
-        class="bg-white shadow-[6px_6px_0_0_#000] rounded-2xl border border-black p-4 text-black"
+        class="bg-white shadow-[6px_6px_0_0_#000] rounded-2xl border border-black py-2 px-4 text-black"
       >
         <div class="flex items-center gap-4">
           <!-- ICONA PROMO -->
           <div
-            class="w-16 h-16 bg-gradient-to-br from-[#FFEE00] to-[#FF9900] border-[4px] border-black rounded-xl flex items-center justify-center shadow-[6px_6px_0_0_#000]"
+            class="w-10 h-10 bg-gradient-to-br from-[#00FF7B] to-[#00C4FF] border-[4px] border-black rounded-xl flex items-center justify-center"
           >
-            <n-icon :size="28" color="black">
+            <n-icon :size="20" color="black">
               <!-- SVG PROMO -->
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +42,7 @@
           <!-- Header Chat -->
           <div class="flex items-center gap-3 mb-3">
             <div
-              class="w-10 h-10 border-[3px] border-black rounded-xl bg-gradient-to-br from-[#00FF7B] to-[#00C4FF] flex items-center justify-center shadow-[4px_4px_0_0_#000]"
+              class="w-10 h-10 border-[3px] border-black rounded-xl bg-gradient-to-br from-[#00FF7B] to-[#00C4FF] flex items-center justify-center"
             >
               <n-icon :size="20" color="black">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor">

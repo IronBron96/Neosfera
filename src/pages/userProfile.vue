@@ -21,7 +21,7 @@
 
         <!-- Avatar -->
         <div
-          class="relative mt-2 w-[150px] h-[150px] rounded-full border border-black bg-gradient-to-br from-[#EFFF00] to-[#00e85f] shadow-[6px_6px_0_0_#000] flex items-center justify-center"
+          class="relative mt-2 w-[150px] h-[150px] rounded-full border border-black bg-black flex items-center justify-center"
         >
           <n-image
             :src="avatarDataUrl"

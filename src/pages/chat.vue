@@ -1,75 +1,13 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex flex-col">
-    <!-- Header -->
-    <header class="bg-[#27272a] sticky top-0 z-50 shadow-sm">
-      <div class="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
-        <n-button circle quaternary @click="goBack">
-          <template #icon>
-            <n-icon :size="20">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                color="white"
-              >
-                <polyline points="15 18 9 12 15 6" />
-              </svg>
-            </n-icon>
-          </template>
-        </n-button>
-
-        <div class="flex items-center gap-3">
-          <n-avatar
-            round
-            :size="36"
-            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop"
-          />
-          <div class="leading-tight">
-            <p class="text-sm font-semibold text-white">Chat Globale</p>
-            <p class="text-xs text-gray-400">24 membri • attivi ora</p>
-          </div>
-        </div>
-
-        <div class="flex items-center gap-1">
-          <n-button circle quaternary>
-            <template #icon>
-              <n-icon :size="20">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  color="white"
-                >
-                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                </svg>
-              </n-icon>
-            </template>
-          </n-button>
-          <n-button circle quaternary>
-            <template #icon>
-              <n-icon :size="20">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  color="white"
-                >
-                  <circle cx="12" cy="12" r="1" />
-                  <circle cx="12" cy="5" r="1" />
-                  <circle cx="12" cy="19" r="1" />
-                </svg>
-              </n-icon>
-            </template>
-          </n-button>
-        </div>
+  <div class="min-h-screen max-w-[450px] m-auto flex flex-col">
+    <div class="flex items-center justify-center gap-3 mt-4">
+      <div
+        class="inline-block text-center px-4 py-1 bg-[#EFFF00] border border-black rounded-full shadow-[4px_4px_0_0_#000]"
+      >
+        <p class="text-2xl font-extrabold text-black leading-tight">Chat Globale</p>
+        <p class="text-xs text-black">24 membri • attivi ora</p>
       </div>
-    </header>
+    </div>
 
     <!-- Messaggi -->
     <main class="flex-1">
@@ -95,14 +33,19 @@
                 class="flex items-end gap-2 max-w-[80%]"
                 :class="m.self ? 'flex-row-reverse' : 'flex-row'"
               >
-                <n-avatar round :size="28" :src="m.avatar" />
+                <n-avatar
+                  round
+                  :size="28"
+                  :src="m.avatar"
+                  class="border border-black rounded-full shadow-[2px_2px_0_0_#000]"
+                />
                 <div>
                   <div
                     class="rounded-2xl px-3 py-2 shadow-lg"
                     :class="
                       m.self
-                        ? 'bg-gradient-to-br from-amber-400 to-orange-500 text-white rounded-br-sm'
-                        : 'bg-[#27272a] text-gray-100 rounded-bl-sm'
+                        ? 'bg-gradient-to-br from-[#00FF7B] to-[#00C4FF] text-black rounded-br-sm'
+                        : 'bg-gradient-to-br from-[#606067] to-black text-gray-100 rounded-bl-sm'
                     "
                   >
                     <p class="text-sm leading-snug break-words whitespace-pre-wrap">
@@ -125,7 +68,6 @@
         </n-scrollbar>
       </div>
     </main>
-
     <!-- Composer -->
     <footer class="sticky bottom-0 bg-[#27272a] border-t border-black/10">
       <div class="max-w-md mx-auto px-3 py-3">
@@ -160,7 +102,7 @@
             @keydown.enter.exact.prevent="sendMessage"
           />
 
-          <n-button type="warning" round :disabled="!canSend" @click="sendMessage">
+          <n-button type="primary" round :disabled="!canSend" @click="sendMessage">
             <template #icon>
               <n-icon>
                 <svg

@@ -66,24 +66,16 @@
       <!-- Logo Centrale Migliorato -->
       <div
         v-if="route.name !== 'customer'"
-        class="absolute left-1/2 -translate-x-1/2 top-2.5 cursor-pointer z-50"
+        class="absolute left-1/2 -translate-x-1/2 cursor-pointer z-50"
+        :class="route.path !== '/chat' ? 'top-2' : 'top-[-0.5]'"
         @click="handleNextPage('customer')"
       >
         <div
-          class="relative w-24 h-24 rounded-full flex items-center justify-center overflow-hidden"
+          class="relative rounded-full flex items-center justify-center overflow-hidden"
+          :class="route.path !== '/chat' ? 'w-24 h-24' : 'w-16 h-16'"
         >
           <!-- bordo metà superiore viola, metà inferiore nero -->
-          <div
-            class="absolute inset-0 rounded-full"
-            style="
-              padding: 4px;
-              background: conic-gradient(
-                from -90deg,
-                #a300ff 0deg 180deg,
-                #000000 180deg 360deg
-              );
-            "
-          >
+          <div class="absolute inset-0 rounded-full" style="padding: 4px">
             <!-- cerchio interno con sfondo blur -->
             <div
               class="w-full h-full rounded-full bg-gradient-to-br from-[#1a1a1acc] to-[#00000080] backdrop-blur-sm flex items-center justify-center overflow-hidden"
@@ -141,26 +133,26 @@
   </header>
 </template>
 <script setup>
-import { useRoute, useRouter } from "vue-router";
-import { getUser } from "../lib/directus.ts";
-import { logout } from "../lib/auth.ts";
-import { nextPage } from "../utils/globals.js";
-import { onMounted, ref } from "vue";
+  import {useRoute, useRouter} from 'vue-router'
+  import {getUser} from '../lib/directus.ts'
+  import {logout} from '../lib/auth.ts'
+  import {nextPage} from '../utils/globals.js'
+  import {onMounted, ref} from 'vue'
 
-const route = useRoute();
-const router = useRouter();
-const user = ref(null);
+  const route = useRoute()
+  const router = useRouter()
+  const user = ref(null)
 
-async function handleLogout() {
-  logout(); // fa già il controllo sul refresh
-  router.push("/login");
-}
+  async function handleLogout() {
+    logout() // fa già il controllo sul refresh
+    router.push('/login')
+  }
 
-function handleNextPage(page) {
-  nextPage(page, router);
-}
+  function handleNextPage(page) {
+    nextPage(page, router)
+  }
 
-onMounted(async () => {
-  user.value = await getUser();
-});
+  onMounted(async () => {
+    user.value = await getUser()
+  })
 </script>
