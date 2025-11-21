@@ -69,7 +69,7 @@
       </div>
     </main>
     <!-- Composer -->
-    <footer class="sticky bottom-0 bg-[#27272a] border-t border-black/10">
+    <footer class="sticky bottom-0 bg-black border-t border-black/10">
       <div class="max-w-md mx-auto px-3 py-3">
         <div class="flex items-end gap-2">
           <n-button circle quaternary @click="toggleEmoji">

@@ -9,7 +9,7 @@
         <div class="flex flex-col items-center gap-1 text-center">
           <h1 class="text-2xl font-extrabold text-black leading-tight">
             <span
-              class="inline-block px-4 py-1 bg-[#EFFF00] border border-black rounded-full shadow-[4px_4px_0_0_#000]"
+              class="inline-block px-4 py-1 bg-[#EFFF00] border border-black rounded-full shadow-[6px_6px_0_0_#000]"
             >
               Scegli un gioco
             </span>
@@ -22,20 +22,20 @@
             v-for="(game, name) in games"
             :key="name"
             type="button"
-            class="w-full flex items-center gap-3 px-4 py-3 bg-black border border-black rounded-full shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000] active:shadow-[2px_2px_0_0_#000] transition-all cursor-pointer"
+            class="w-full flex items-center gap-3 px-4 py-3 bg-[#00e85f] border border-black rounded-full shadow-[6px_6px_0_0_#000] hover:shadow-[6px_6px_0_0_#000] active:shadow-[2px_2px_0_0_#000] transition-all cursor-pointer"
             @click="selectGame(name)"
           >
             <!-- Icona -->
             <div
-              class="w-10 h-10 rounded-full border border-black bg-gradient-to-br from-[#EFFF00] to-[#00e85f] flex items-center justify-center shadow-[3px_3px_0_0_#000]"
+              class="w-10 h-10 rounded-full border border-black bg-black flex items-center justify-center shadow-[3px_3px_0_0_#000]"
             >
-              <n-icon :size="22" color="black">
+              <n-icon :size="22" color="#EFFF00">
                 <component :is="getIcon(name)" />
               </n-icon>
             </div>
 
             <!-- Nome gioco -->
-            <span class="flex-1 text-left text-base font-extrabold text-white">
+            <span class="flex-1 text-left text-lg font-extrabold text-black">
               {{ formatName(name) }}
             </span>
           </button>

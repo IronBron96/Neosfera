@@ -32,7 +32,7 @@
       primaryColorHover: '#00e85f',
       primaryColorPressed: '#00e85f',
       primaryColorSuppl: '#00e85f',
-      baseColor: '#FFFCF2',
+      baseColor: '#efff00',
       textColorBase: '#252422',
     },
     Button: {

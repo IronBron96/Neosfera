@@ -24,13 +24,15 @@ const router = createRouter({
 const INACTIVITY_MAX = 60 * 60 * 1000 // 60 minuti
 
 router.beforeEach((to, from, next) => {
-  const token = localStorage.getItem('directus_token')
+  let token = localStorage.getItem('directus_token') // 👈 usa let
   const lastActive = localStorage.getItem('last_active')
   const now = Date.now()
 
   if (token && lastActive && now - Number(lastActive) > INACTIVITY_MAX) {
     // sessione vecchia → considera l’utente come sloggato
     localStorage.removeItem('directus_token')
+    localStorage.removeItem('last_active')
+    token = null // 👈 aggiorna la variabile usata dopo
   }
 
   if (!token && to.path !== '/login') {

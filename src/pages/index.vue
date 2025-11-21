@@ -1,38 +1,51 @@
 <template>
   <div class="flex flex-col">
     <!-- Contenuto principale -->
-    <main class="max-w-md mx-auto px-6 pt-12 flex flex-col gap-3">
+    <main class="max-w-md mx-auto px-6 pt-10 flex flex-col gap-3">
       <!-- PROMOZIONE / INFO -->
-      <div
-        class="bg-white shadow-[6px_6px_0_0_#000] rounded-2xl border border-black py-2 px-4 text-black"
+      <section
+        class="relative overflow-hidden bg-[#FFFAD1] border-[4px] border-black rounded-3xl shadow-[8px_8px_0_0_#000] px-4 py-3 text-black"
       >
-        <div class="flex items-center gap-4">
-          <!-- ICONA PROMO -->
-          <div
-            class="w-10 h-10 bg-gradient-to-br from-[#00FF7B] to-[#00C4FF] border-[4px] border-black rounded-xl flex items-center justify-center"
-          >
-            <n-icon :size="20" color="black">
-              <!-- SVG PROMO -->
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+        <div class="flex items-start justify-between gap-3">
+          <!-- Icona + titolo -->
+          <div class="flex items-start gap-3">
+            <div class="flex flex-col gap-1">
+              <!-- Badge “promo attiva” -->
+              <span
+                class="inline-flex items-center gap-2 rounded-full bg-black px-2 py-0.5 text-[11px] font-black uppercase tracking-wide text-[#FFFAD1]"
               >
-                <path
-                  d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"
-                ></path>
-              </svg>
-            </n-icon>
+                <span class="h-2 w-2 rounded-full bg-[#FFEE00] animate-pulse"></span>
+                Promo attiva ora
+              </span>
+
+              <h3 class="text-xl font-extrabold leading-tight">Offerta del Giorno</h3>
+            </div>
           </div>
 
-          <!-- TESTO -->
-          <div>
-            <h3 class="font-extrabold text-xl text-black">Offerta del Giorno</h3>
-            <p class="text-base font-semibold text-black">Caffè + Cornetto a €2.50</p>
+          <!-- Mini info di urgenza -->
+          <div class="text-right text-[13px] font-extrabold leading-tight">
+            <p class="uppercase">Solo oggi</p>
+            <p class="text-[10px] text-black">Fino alle 18:00</p>
           </div>
         </div>
-      </div>
+
+        <!-- Contenuto offerta -->
+        <div class="flex items-baseline justify-between gap-2">
+          <p class="text-base font-semibold">Caffè + Cornetto</p>
+
+          <div
+            class="inline-flex items-center gap-1 rounded-full border-[3px] border-black bg-[#FFEE00] px-2 text-sm font-black shadow-[3px_3px_0_0_#000]"
+          >
+            <span class="text-[11px] uppercase">a soli</span>
+            <span class="text-lg">€2.50</span>
+          </div>
+        </div>
+
+        <!-- Accento grafico in alto a destra -->
+        <div
+          class="pointer-events-none opacity-30 absolute -right-6 -top-6 h-20 w-20 rotate-12 rounded-3xl border-[4px] border-black bg-gradient-to-br from-[#FFEE00] to-[#FF8A00]"
+        ></div>
+      </section>
 
       <!-- CHAT GLOBALE PREVIEW -->
       <div class="relative mb-3">

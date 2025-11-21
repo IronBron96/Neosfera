@@ -12,7 +12,7 @@
           </span>
           <h1 class="text-4xl font-extrabold text-black leading-tight">
             <span
-              class="inline-block px-4 py-1 bg-[#EFFF00] border border-black rounded-full shadow-[4px_4px_0_0_#000]"
+              class="inline-block px-4 py-1 bg-[#EFFF00] border border-black rounded-full shadow-[6px_6px_0_0_#000]"
             >
               {{ nickname }}
             </span>
@@ -41,7 +41,7 @@
             strong
             secondary
             round
-            class="!bg-[#EFFF00] !text-black !font-bold !border-2 !border-black !rounded-full !px-3 !h-10 shrink-0 max-w-full shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000] active:shadow-[2px_2px_0_0_#000]"
+            class="!bg-[#EFFF00] !text-black !font-bold !border-2 !border-black !rounded-full !px-3 !h-10 shrink-0 max-w-full shadow-[6px_6px_0_0_#000] hover:shadow-[6px_6px_0_0_#000] active:shadow-[2px_2px_0_0_#000]"
             @click="showAvatarModal = true"
           >
             Cambia avatar
@@ -52,7 +52,7 @@
             type="primary"
             quaternary
             circle
-            class="!bg-black !text-white !font-bold !border-2 !border-black !h-10 shrink-0 shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000] active:shadow-[2px_2px_0_0_#000]"
+            class="!bg-black !text-white !font-bold !border-2 !border-black !h-10 shrink-0 shadow-[6px_6px_0_0_#000] hover:shadow-[6px_6px_0_0_#000] active:shadow-[2px_2px_0_0_#000]"
             @click="generateRandomAvatar"
             title="Avatar casuale"
           >
@@ -69,7 +69,7 @@
             secondary
             round
             block
-            class="!bg-[#00e85f] !text-black !font-bold !rounded-full !h-11 shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000] active:shadow-[2px_2px_0_0_#000]"
+            class="!bg-[#00e85f] !text-black !font-bold !rounded-full !h-11 shadow-[6px_6px_0_0_#000] hover:shadow-[6px_6px_0_0_#000] active:shadow-[2px_2px_0_0_#000]"
             @click="changeNickname"
           >
             Cambia nickname
