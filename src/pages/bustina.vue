@@ -4,7 +4,7 @@
     <div
       class="inline-block text-center mb-16 px-4 py-3 bg-[#EFFF00] border border-black rounded-full shadow-[4px_4px_0_0_#000]"
     >
-      <h2 class="text-5xl font-extrabold text-black">1 bustina omaggio!</h2>
+      <h2 class="text-3xl font-extrabold text-black">1 bustina omaggio!</h2>
     </div>
 
     <!-- CONTAINER BUSTINA + CARTE -->
